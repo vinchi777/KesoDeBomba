@@ -31,23 +31,21 @@ app.get('/', function(req,res){
 
 
 io.sockets.on('connection',function(socket){
-	socket.prevroom=null;	
          socket.on('joinroom',function(roomname){        
-		 if(rooms[roomname].players < 2)   
+		 if(rooms[roomname].players < 2 )   
 		 {       
-				 
-                                if(socket.prevroom!=null)
+                                if(socket.roomid)
 				 {
-				 socket.leave(socket.prevroom);
-				 rooms[roomname].players--;
+				 rooms[socket.roomid].players-=1;
+				 socket.leave(socket.roomid);
+             			io.sockets.json.emit('roomusers',{room:socket.roomid, players:rooms[socket.roomid].players})
 				 }	
-				 socket.playerno = rooms[roomname].players+1;	
-				 socket.prevroom=socket.roomid;
+				// socket.playerno = rooms[roomname].players+1;	
 				 socket.join(roomname);
                                  rooms[roomname].players+=1; 
 				 socket.roomid=roomname;
 				 socket.json.emit('joined',{msg:"youve joined "+roomname+"</br>" , playerno:socket.playerno});
-                                 io.sockets.json.emit('roomusers',{room:roomname , players:rooms[roomname].players})
+				 io.sockets.json.emit('roomusers',{room:roomname , players:rooms[roomname].players});
 /*	
 				 if(rooms[roomname].players ==2)
 				 {
@@ -55,7 +53,8 @@ io.sockets.on('connection',function(socket){
 				 }
 */
         	 } 
-                
+                 else if(socket.roomid == roomname)                
+		    socket.json.emit('joined',{msg:"on the same room" , playerno:0});
 		 else 
 		 {
 		    socket.json.emit('roomusers',{room:roomname , players:rooms[roomname].players})
@@ -70,7 +69,7 @@ io.sockets.on('connection',function(socket){
           socket.on('disconnect',function(){
                 if(socket.roomid && rooms[socket.roomid].players!=0)
 		 { 
-			     rooms[socket.roomid].players--;
+			     rooms[socket.roomid].players-=1;
 			     io.sockets.json.emit('roomusers',{room:socket.roomid , players:rooms[socket.roomid].players});
 			     socket.leave(socket.roomid);
 		 }           

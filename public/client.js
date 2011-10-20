@@ -14,7 +14,7 @@ socket.on('updatechat',function(msg){
 });
 
 socket.on('roomusers',function(data){
-  $("#"+data.room).html(data.players+" players");
+  $("#"+data.room).html(data.players+" players"); 
 });
 
 socket.on('startgame',function(){
