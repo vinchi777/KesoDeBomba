@@ -8,11 +8,15 @@ var players;
 var rooms = new Array();
 rooms["room1"] = 
 {
- "players" : 0
+ "players" : 0,
+ "playerone" : null,
+ "playertwo" : null
 };
 rooms["room2"] = 
 {
- "players" : 0
+ "players" : 0,
+ "playerone" : null,
+ "playertwo" : null
 }
 app.use(express.static(__dirname + '/public'));
 app.listen(port,function(){
@@ -31,23 +35,31 @@ io.sockets.on('connection',function(socket){
          socket.on('joinroom',function(roomname){        
 		 if(rooms[roomname].players < 2)   
 		 {       
-				 if(socket.prevroom!=null)
+				 
+                                if(socket.prevroom!=null)
 				 {
 				 socket.leave(socket.prevroom);
 				 rooms[roomname].players--;
 				 }	
-
-				 socket.prevroom=roomname;
+				 socket.playerno = rooms[roomname].players+1;	
+				 socket.prevroom=socket.roomid;
 				 socket.join(roomname);
-				 rooms[roomname].players+=1; 
+                                 rooms[roomname].players+=1; 
 				 socket.roomid=roomname;
-				 socket.emit('joined',"youve joined "+roomname+"</br>" );
+				 socket.json.emit('joined',{msg:"youve joined "+roomname+"</br>" , playerno:socket.playerno});
                                  io.sockets.json.emit('roomusers',{room:roomname , players:rooms[roomname].players})
-		 } 
+/*	
+				 if(rooms[roomname].players ==2)
+				 {
+				 io.sockets.in(roomname).json.emit('startgame',{playno:});
+				 }
+*/
+        	 } 
+                
 		 else 
 		 {
 		    socket.json.emit('roomusers',{room:roomname , players:rooms[roomname].players})
-		    socket.emit('joined',"room is full, pick another room");
+		    socket.json.emit('joined',{msg:"room is full" , playerno:0});
 		 }      
   	 });
             
@@ -56,7 +68,7 @@ io.sockets.on('connection',function(socket){
          });
 
           socket.on('disconnect',function(){
-                if(socket.roomid)
+                if(socket.roomid && rooms[socket.roomid].players!=0)
 		 { 
 			     rooms[socket.roomid].players--;
 			     io.sockets.json.emit('roomusers',{room:socket.roomid , players:rooms[socket.roomid].players});

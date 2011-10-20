@@ -1,10 +1,12 @@
 var socket = io.connect('http://localhost:3000');
-  
+var myplayerno;  
 socket.on('connect',function(){
 });
 
 socket.on('joined',function(data){
-    $('#msg').html(data);
+    $('#msg').html(data.msg);
+ if(data.playerno != 0)
+  myplayerno = data.playerno;
 });
 
 socket.on('updatechat',function(msg){  
@@ -13,6 +15,12 @@ socket.on('updatechat',function(msg){
 
 socket.on('roomusers',function(data){
   $("#"+data.room).html(data.players+" players");
+});
+
+socket.on('startgame',function(){
+  playerone = new Player();
+  playertwo = new Player();
+
 });
 
 
@@ -29,15 +37,4 @@ socket.on('roomusers',function(data){
 	});
 
 
-/*
-   socket.on('updatechat', function(username,data){
-      $('#conversation').append('<b>' +username + ':</b>' +data+ '<br>);
-});
 
-socket.on('updateusers',function(data){
-  $('#users').empty();
-  $.each(data, function(key,value){
-    $('#users').append('<div>' +key+)
- });
-});
-*/
