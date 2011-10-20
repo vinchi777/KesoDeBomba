@@ -3,10 +3,21 @@
 <script src = "/socket.io/socket.io.js"> </script>
 <script src = "http://code.jquery.com/jquery-latest.js"> </script>
 <script type="text/javascript" src="client.js"></script>
+<link rel=StyleSheet href="styles.css" type="text/css">
 </head>
 
 
 <body>
+<div id="usersdiv">
+         <b>USERS</b>        
+       <div id="users">
+       ROOM 1:
+         <div id="room1"></div>
+  </br>
+       ROOM 2:
+         <div id="room2"></div>
+       </div>
+</div>
 <select id='roomselect'>
   <option value="room1">room1</option>
   <option value="room2">room2</option>
@@ -16,5 +27,10 @@
 <input type="text" id="chat"/>
 <div id='msg'></div>
 
+	<div id="wrapper">
+		<div id='arena'>
+
+		</div>
+	</div>
 </body>
 </html>

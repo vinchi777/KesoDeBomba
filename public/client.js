@@ -1,7 +1,6 @@
 var socket = io.connect('http://localhost:3000');
   
 socket.on('connect',function(){
-    alert("connect");
 });
 
 socket.on('joined',function(data){
@@ -9,8 +8,13 @@ socket.on('joined',function(data){
 });
 
 socket.on('updatechat',function(msg){  
-    $('#msg').append(msg);
+    $('#msg').append(msg+"</br>");
 });
+
+socket.on('roomusers',function(data){
+  $("#"+data.room).html(data.players+" players");
+});
+
 
 	 $(function(){
 		 $('#roomjoin').click(function(){  
