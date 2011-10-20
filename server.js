@@ -32,30 +32,31 @@ app.get('/', function(req,res){
 
 io.sockets.on('connection',function(socket){
          socket.on('joinroom',function(roomname){        
-		 if(rooms[roomname].players < 2 )   
+
+                if(socket.roomid == roomname)                
+		    socket.json.emit('joined',{msg:"on the same room" , playerno:0});
+ 	   	else if(rooms[roomname].players < 2 )   
 		 {       
                                 if(socket.roomid)
 				 {
 				 rooms[socket.roomid].players-=1;
 				 socket.leave(socket.roomid);
-             			io.sockets.json.emit('roomusers',{room:socket.roomid, players:rooms[socket.roomid].players})
+             	 		 io.sockets.json.emit('roomusers',{room:socket.roomid, players:rooms[socket.roomid].players})
 				 }	
-				// socket.playerno = rooms[roomname].players+1;	
+				 socket.playerno = rooms[roomname].players+1;	
 				 socket.join(roomname);
                                  rooms[roomname].players+=1; 
 				 socket.roomid=roomname;
 				 socket.json.emit('joined',{msg:"youve joined "+roomname+"</br>" , playerno:socket.playerno});
 				 io.sockets.json.emit('roomusers',{room:roomname , players:rooms[roomname].players});
-/*	
-				 if(rooms[roomname].players ==2)
+	
+				 if(rooms[roomname].players == 2)
 				 {
-				 io.sockets.in(roomname).json.emit('startgame',{playno:});
+				 io.sockets.in(roomname).json.emit('startgame');
 				 }
-*/
+
         	 } 
-                 else if(socket.roomid == roomname)                
-		    socket.json.emit('joined',{msg:"on the same room" , playerno:0});
-		 else 
+                 else 
 		 {
 		    socket.json.emit('roomusers',{room:roomname , players:rooms[roomname].players})
 		    socket.json.emit('joined',{msg:"room is full" , playerno:0});

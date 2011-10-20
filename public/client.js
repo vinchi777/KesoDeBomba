@@ -17,9 +17,12 @@ socket.on('roomusers',function(data){
   $("#"+data.room).html(data.players+" players"); 
 });
 
-socket.on('startgame',function(){
-  playerone = new Player();
-  playertwo = new Player();
+socket.on('startgame',function(){   
+  playerone = new Player("pone");
+  playertwo = new Player("ptwo");
+
+playerone.initposition();
+playertwo.initposition();
 
 });
 
