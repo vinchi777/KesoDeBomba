@@ -1,12 +1,17 @@
 var socket = io.connect('http://localhost:3000');
 var myplayerno;  
+var startgame = 0;
+
 socket.on('connect',function(){
 });
 
 socket.on('joined',function(data){
     $('#msg').html(data.msg);
- if(data.playerno != 0)
-  myplayerno = data.playerno;
+ if(data.playerno != 4)
+ {
+  myplayerno = data.playerno+1;
+    $('#msg').append('</br> player '+ myplayerno);
+ }
 });
 
 socket.on('updatechat',function(msg){  
@@ -18,6 +23,7 @@ socket.on('roomusers',function(data){
 });
 
 socket.on('startgame',function(){   
+  startgame = 1;
   playerone = new Player("pone");
   playertwo = new Player("ptwo");
 
@@ -26,8 +32,19 @@ playertwo.initposition();
 
 });
 
+socket.on('moveplayer',function(data){
+  if(data.from == 1)
+ playerone.move(data.to);
+ else if(data.from==2)
+ playertwo.move(data.to);
+});
 
-	 $(function(){
+socket.on('cleararena',function(){
+ $("#arena").html("");
+});
+
+
+	 $(document).ready(function(){
 		 $('#roomjoin').click(function(){  
 			 socket.emit('joinroom',$('#roomselect').val());
 
@@ -36,6 +53,13 @@ playertwo.initposition();
 			 if(e.which==13)
 			 socket.emit('chat',$('#chat').val());
 			 });
+
+                jQuery(window).keyup(function(e){
+                          if(startgame == 1)
+                             socket.json.emit('sendmove',{to:e.which , from:myplayerno}) 
+                          });
+
+                 
 
 	});
 
