@@ -11,14 +11,13 @@ position:relative;
 #usersdiv
 {
 float:left;
-background-color:red;
 margin-top:80px;
 width:100px;
 border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;
 }
 #msg
 {
-background-color:yellow;
+
  float:left;
  width:200px;
  margin-top:50px;

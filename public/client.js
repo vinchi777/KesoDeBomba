@@ -6,7 +6,7 @@ socket.on('connect',function(){
 });
 
 socket.on('joined',function(data){
-    $('#msg').html(data.msg);
+    $('#msg').html(data.msg+'</br>');
  if(data.playerno != 4)
  {
   myplayerno = data.playerno+1;
