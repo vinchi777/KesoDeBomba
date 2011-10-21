@@ -10,7 +10,7 @@ socket.on('joined',function(data){
  if(data.playerno != 4)
  {
   myplayerno = data.playerno+1;
-    $('#msg').append('</br> player '+ myplayerno);
+    $('#msg').append(' player '+ myplayerno+'</br>');
  }
 });
 
@@ -49,9 +49,12 @@ socket.on('cleararena',function(){
 			 socket.emit('joinroom',$('#roomselect').val());
 
 			 });
-		 $('#chat').keydown(function(e){
-			 if(e.which==13)
-			 socket.emit('chat',$('#chat').val());
+			 $('#chat').keydown(function(e){
+				 if(e.which==13)
+				{
+				 socket.emit('chat',$('#chat').val());
+			       	 $('#chat').val("");
+				} 
 			 });
 
                 jQuery(window).keyup(function(e){
