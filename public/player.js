@@ -3,16 +3,26 @@ function Player(pno){
        // this.name=pname;
        //this.roomno=proom;
   this.playerno=pno;
-  this.onrow = 12;
-  this.oncolumn = 0;
+  this.onrow;
+  this.oncolumn;
 	
 this.initposition = function(){
  $("#arena").append("<div id="+this.playerno+">aw</div>");
+	 if(this.playerno == "pone")
+	 {
+ 		this.onrow = 11;
+                this.oncolumn = 0; 
+	 }
+	 else if(this.playerno == "ptwo")
+	 {
+		 this.onrow = 11;
+		 this.oncolumn =11;
+	 }
 }
 this.move = function(direction){
     if(direction == 40)
     {
-           if(this.onrow < 12)
+           if(this.onrow < 11)
 	   {	  
 		   $("#"+this.playerno).animate({"bottom": "-=50px"}, "fast");
 		   this.onrow+=1;
@@ -38,7 +48,7 @@ this.move = function(direction){
     }
     else if(direction == 39)
     {
-	    if(this.oncolumn <12)
+	    if(this.oncolumn <11)
 	    {    
 		    $("#"+this.playerno).animate({"left": "+=50px"}, "fast");
 		    this.oncolumn+=1;
