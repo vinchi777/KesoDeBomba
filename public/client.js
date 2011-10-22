@@ -1,4 +1,4 @@
-var socket = io.connect('http://kesodebomba.herokuapp.com');
+var socket = io.connect();
 var myplayerno;  
 var startgame = 0;
 
