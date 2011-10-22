@@ -1,4 +1,4 @@
-var socket = io.connect('http://waychoyaks.herokuapp.com');
+var socket = io.connect('http://kesodebomba.herokuapp.com');
 var myplayerno;  
 var startgame = 0;
 
