@@ -2,7 +2,7 @@ var express = require('express');
 var app =express.createServer();
 var io =require('socket.io').listen(app); 
 
-var port =   3000;
+var port = process.env.PORT ||  3000;
 var prevroom;
 var players;
 var rooms = new Array();
