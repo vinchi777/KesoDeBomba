@@ -26,9 +26,10 @@ socket.on('startgame',function(){
   startgame = 1;
   playerone = new Player("pone");
   playertwo = new Player("ptwo");
-
+  playground = new Arena();
 playerone.initposition();
 playertwo.initposition();
+playground.initialize();
 
 });
 

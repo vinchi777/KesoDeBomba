@@ -3,8 +3,8 @@
  
 position:relative;
  background-color:green;
- width:600px;
- height:600px;
+ width:650px;
+ height:650px;
  margin-left:250px;
  margin-top:50px;
 }
@@ -35,10 +35,18 @@ bottom:0px;
 #ptwo
 {
 background-color:#abc;
-left:550px;
+left:600px;
 position:absolute;
 width:50px;
 height:50px;
 margin:0px;
 bottom:0px;
+}
+.block
+{
+background-color:black;
+position:absolute;
+width:50px;
+height:50px;
+margin:0px;
 }

@@ -1,7 +1,6 @@
 var express = require('express');
 var app =express.createServer();
-var io =require('socket.io').listen(app);
-
+var io =require('socket.io').listen(app); 
 
 var port =   3000;
 var prevroom;
