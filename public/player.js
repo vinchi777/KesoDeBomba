@@ -43,30 +43,32 @@ this.move = function(direction){
 }
 
 this.canmove = function(direction){
-     if(direction == 40)
+//   var colide = 0;
+// playground.index[this.onrow+1][this.oncolumn] == "block" ||   
+   if(direction == 40)
     {
-           if(playground.index[this.onrow+1][this.oncolumn] == "block" || this.onrow >= 12)
+           if(this.onrow >= 12)
                 return 0;
 	   else
   		return 1;
     }
     else if(direction == 38)
     {
-	    if(playground.index[this.onrow-1][this.oncolumn] == "block" || this.onrow <= 0)
+	    if( this.onrow <= 0)
 	        return 0;
 	    else
  		return 1;
     }   
     else if(direction == 37 )
     {
-	    if(playground.index[this.onrow][this.oncolumn-1] == "block" || this.oncolumn <= 0)
+	    if( this.oncolumn <= 0)
 	        return 0;
 	    else 
  		return 1;
     }
     else if(direction == 39)
     {
-	    if(playground.index[this.onrow][this.oncolumn+1] == "block" || this.oncolumn >= 12)
+	    if( this.oncolumn >= 12)
 	        return 0;
 	    else
 		return 1;
