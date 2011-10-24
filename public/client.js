@@ -35,17 +35,10 @@ playground.initialize();
 });
 
 socket.on('moveplayer',function(data){
-<<<<<<< HEAD
-  if(data.from == 1)
- playerone.move(data.to);
- else if(data.from==2)
- playertwo.move(data.to);
-=======
 		if(data.from == 1 && playerone.canmove(data.to))
 		playerone.move(data.to);
 		else if(data.from==2 && playertwo.canmove(data.to))
 		playertwo.move(data.to);
->>>>>>> localport
 });
 
 socket.on('cleararena',function(){

@@ -56,7 +56,6 @@ this.move = function(direction){
     } 
 }
 
-
 this.canmove = function(direction){
      if(direction == 40)
     {
