@@ -22,7 +22,7 @@ this.initposition = function(){
 this.move = function(direction){
     if(direction == 40)
     {
-           if(this.onrow < 13)
+           if(this.onrow < 12)
 	   {	  
 		   $("#"+this.playerno).animate({"bottom": "-=50px"}, "fast");
 		   this.onrow+=1;
@@ -48,7 +48,7 @@ this.move = function(direction){
     }
     else if(direction == 39)
     {
-	    if(this.oncolumn < 13)
+	    if(this.oncolumn < 12)
 	    {    
 		    $("#"+this.playerno).animate({"left": "+=50px"}, "fast");
 		    this.oncolumn+=1;

@@ -60,13 +60,14 @@ socket.on('cleararena',function(){
 			 });
 
                 jQuery(window).keydown(function(e){
-                          if(startgame == 1 && canpress == 1)
+                          if(startgame == 1 && canpress == 1 && (e.which >=37 && e.which <=40))
 				{
 				canpress = 0;
                              socket.json.emit('sendmove',{to:e.which , from:myplayerno});
 				} 
                           });
                 jQuery(window).keyup(function(e){
+			  if(e.which >=37 && e.which <=40)	
    				canpress = 1;
 				});
 
