@@ -22,7 +22,7 @@ this.initposition = function(){
 this.move = function(direction){
     if(direction == 40)
     {
-           if(this.onrow < 12)
+           if(this.onrow < 13)
 	   {	  
 		   $("#"+this.playerno).animate({"bottom": "-=50px"}, "fast");
 		   this.onrow+=1;
@@ -48,7 +48,7 @@ this.move = function(direction){
     }
     else if(direction == 39)
     {
-	    if(this.oncolumn <12)
+	    if(this.oncolumn < 13)
 	    {    
 		    $("#"+this.playerno).animate({"left": "+=50px"}, "fast");
 		    this.oncolumn+=1;
@@ -60,39 +60,31 @@ this.canmove = function(direction){
      if(direction == 40)
     {
            if(playground.index[this.onrow+1][this.oncolumn] == "block")
-	   {	  
-		return 0;
-	   }
-           else
+                return 0;
+	   else
   		return 1;
     }
     else if(direction == 38)
     {
 	    
 	    if(playground.index[this.onrow-1][this.oncolumn] == "block")
-	    {
-               return 0;
-	    }
-             else
+	        return 0;
+	    else
  		return 1;
     }   
     else if(direction == 37)
     {
 	    
 	    if(playground.index[this.onrow][this.oncolumn-1] == "block")
-	    {
-		return 0;
-	    }
- 	   else 
+	        return 0;
+	    else 
  		return 1;
     }
     else if(direction == 39)
     {
 	    if(playground.index[this.onrow][this.oncolumn+1] == "block")
-	    {    
- 		return 0;
-	    }
-  	else
+	        return 0;
+	    else
 		return 1;
     }   
 }
