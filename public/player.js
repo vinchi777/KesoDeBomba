@@ -55,4 +55,10 @@ this.move = function(direction){
 	    }
     } 
 }
+
+this.canmove = function(){
+
+}
+
+
 }

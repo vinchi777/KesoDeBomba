@@ -1,6 +1,7 @@
 var socket = io.connect();
 var myplayerno;  
 var startgame = 0;
+var canpress = 1;
 
 socket.on('connect',function(){
 });
@@ -34,14 +35,10 @@ playground.initialize();
 });
 
 socket.on('moveplayer',function(data){
-		if(data.from == 1 )
-		}
-		playerone.move(data.to);
-		} 
-		else if(data.from==2 )
-		{
-		playertwo.move(data.to);
-		}
+  if(data.from == 1)
+ playerone.move(data.to);
+ else if(data.from==2)
+ playertwo.move(data.to);
 });
 
 socket.on('cleararena',function(){
@@ -62,10 +59,16 @@ socket.on('cleararena',function(){
 				} 
 			 });
 
-                jQuery(window).keyup(function(e){
-                          if(startgame == 1)
-                             socket.json.emit('sendmove',{to:e.which , from:myplayerno}) 
+                jQuery(window).keydown(function(e){
+                          if(startgame == 1 && canpress == 1)
+				{
+				canpress = 0;
+                             socket.json.emit('sendmove',{to:e.which , from:myplayerno});
+				} 
                           });
+                jQuery(window).keyup(function(e){
+   				canpress = 1;
+				});
 
                  
 
