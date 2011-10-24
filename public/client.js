@@ -1,7 +1,6 @@
 var socket = io.connect();
 var myplayerno;  
 var startgame = 0;
-var canpress = 1;
 
 socket.on('connect',function(){
 });
@@ -63,16 +62,10 @@ socket.on('cleararena',function(){
 				} 
 			 });
 
-                jQuery(window).keydown(function(e){
-                          if(startgame == 1 && canpress == 1)
-				{
-				canpress = 0;
-                             socket.json.emit('sendmove',{to:e.which , from:myplayerno});
-				} 
-                          });
                 jQuery(window).keyup(function(e){
-   				canpress = 1;
-				});
+                          if(startgame == 1)
+                             socket.json.emit('sendmove',{to:e.which , from:myplayerno}) 
+                          });
 
                  
 
