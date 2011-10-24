@@ -54,21 +54,21 @@ this.canmove = function(direction){
     }
     else if(direction == 38)
     {
-	    if( this.onrow <= 0)
+	    if( this.onrow <= 0 || playground.index[this.onrow-1][this.oncolumn] == "block"  )
 	        return 0;
 	    else
  		return 1;
     }   
     else if(direction == 37 )
     {
-	    if( this.oncolumn <= 0)
+	    if( this.oncolumn <= 0 || playground.index[this.onrow][this.oncolumn-1] == "block" )
 	        return 0;
 	    else 
  		return 1;
     }
     else if(direction == 39)
     {
-	    if( this.oncolumn >= 12)
+	    if( this.oncolumn >= 12 ||  playground.index[this.onrow][this.oncolumn+1] == "block")
 	        return 0;
 	    else
 		return 1;
