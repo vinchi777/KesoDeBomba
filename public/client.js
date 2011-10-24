@@ -37,7 +37,7 @@ playground.initialize();
 socket.on('moveplayer',function(data){
 		if(data.from == 1 )
 		playerone.move(data.to);
-		else if(data.from==2 && playertwo.canmove(data.to))
+		else if(data.from==2 && playertwo.canmove(data.to)==1)
 		playertwo.move(data.to);
 });
 
