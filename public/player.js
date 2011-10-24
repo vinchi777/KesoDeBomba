@@ -55,4 +55,39 @@ this.move = function(direction){
 	    }
     } 
 }
+/*
+this.canmove = function(direction){
+	if(direction == 40)
+	{
+		if(playground.index[this.onrow+1][this.oncolumn] == "block")
+			return 0;
+		else
+			return 1;
+	}
+	else if(direction == 38)
+	{
+		if(playground.index[this.onrow-1][this.oncolumn] == "block")
+			return 0;
+		else
+			return 1;
+
+	}   
+	else if(direction == 37)
+	{ 
+		if(playground.index[this.onrow][this.oncolumn-1] == "block")
+			return 0;
+		else
+			return 1;
+
+	}
+	else if(direction == 39)
+	{
+		if(playground.index[this.onrow][this.oncolumn+1] == "block")
+			return 0;
+		else
+			return 1;	
+	}
+}
+*/
+
 }
