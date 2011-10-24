@@ -9,11 +9,11 @@ this.index = new Array(nrows);
  }
 	
 	 this.initialize = function(){
-		 for(i=1; i <nrows; i+=2){
-		    for(j=1; j < ncols; j+=2){
-		       this.index[i][j] = "block";
-			var ypos = 50 * j;
- 			var xpos = 50 * i;
+		 for(x=1; x <nrows; x+=2){
+		    for(y=1; y < ncols; y+=2){
+		       this.index[x][y] = "block";
+			var ypos = 50 * y;
+ 			var xpos = 50 * x;
                        $('#arena').append("<div class='block' style='left:"+ypos+"px; top:"+xpos+"px; '> </div> ");
 		 }
 		}   

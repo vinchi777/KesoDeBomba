@@ -47,7 +47,7 @@ this.canmove = function(direction){
 // playground.index[this.onrow+1][this.oncolumn] == "block" ||   
    if(direction == 40)
     {
-           if(this.onrow >= 12)
+           if(this.onrow >= 12 || playground.index[this.onrow+1][this.oncolumn] == "block" )
                 return 0;
 	   else
   		return 1;
