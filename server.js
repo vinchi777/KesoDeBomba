@@ -35,6 +35,8 @@ app.get('/', function(req,res){
 
 
 io.sockets.on('connection',function(socket){
+	
+// when a player joins a room, joinroom event is called.
          socket.on('joinroom',function(roomname){        
 
                 if(socket.roomid == roomname)                
@@ -77,16 +79,16 @@ io.sockets.on('connection',function(socket){
 		    socket.json.emit('joined',{msg:"room is full" , playerno:4});
 		 }      
   	 });
-            
+//when a player chats, it boradcast's the message to all players in the room.            
           socket.on('chat',function(msg){
               io.sockets.in(socket.roomid).emit('updatechat',msg);
          });
-	  
+//sends the move of a player to all players in the room.	  
          socket.on('sendmove',function(data){
             io.sockets.in(socket.roomid).json.emit('moveplayer',data);
 	})
 
-   
+// this fires when a player disconnects in the game.   
           socket.on('disconnect',function(){
                 if(socket.roomid && rooms[socket.roomid].players!=0)
 		 { 

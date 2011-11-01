@@ -1,11 +1,12 @@
 function Player(pno){
-	
-       // this.name=pname;
-       //this.roomno=proom;
+/*
+onrow = in what row the player is located
+oncolumn = in what column the player is located
+*/	
   this.playerno=pno;
   this.onrow;
   this.oncolumn;
-	
+// sets position of player	
 this.initposition = function(){
  $("#arena").append("<div id="+this.playerno+">"+this.playerno+"</div>");
 	 if(this.playerno == "pone")
@@ -19,6 +20,7 @@ this.initposition = function(){
 		 this.oncolumn =12;
 	 }
 }
+//to move or animate a player to a specific direction 40 for down 38 for up 37 for left 39 for right. if im not mistaken.
 this.move = function(direction){
     if(direction == 40)
     {
@@ -41,10 +43,8 @@ this.move = function(direction){
 		    this.oncolumn+=1;
     } 
 }
-
+//checks if a player can move. cant move if colides in a block or in the border.
 this.canmove = function(direction){
-//   var colide = 0;
-// playground.index[this.onrow+1][this.oncolumn] == "block" ||   
    if(direction == 40)
     {
            if(this.onrow >= 12 || playground.index[this.onrow+1][this.oncolumn] == "block" )
