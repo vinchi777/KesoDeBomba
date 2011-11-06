@@ -8,6 +8,7 @@ var socket = io.connect();
 var myplayerno;  
 var startgame = 0;
 var canpress = 1;
+var canplantbomb = 1;
 // connect to a server
 socket.on('connect',function(){
 });
@@ -46,6 +47,15 @@ socket.on('moveplayer',function(data){
 		else if(data.from==2 && playertwo.canmove(data.to)==1)
 		playertwo.move(data.to);
 });
+//fired when bomb is planted
+socket.on('plantbomb',function(data){
+    if(data.from == 1)
+     playerone.plantbomb(data.row,data.col);
+    else if(data.from == 2)
+     playertwo.plantbomb(data.row,data.col);
+
+    
+});
 //clears the arena when someone leaves the room or got dc'd
 socket.on('cleararena',function(){
  $("#arena").html("");
@@ -66,12 +76,32 @@ socket.on('cleararena',function(){
 			 });
 
                 jQuery(window).keydown(function(e){
-                          if(startgame == 1 && canpress == 1 && (e.which >=37 && e.which <=40))
+
+			if(startgame == 1 )
+   			{
+                          if(canpress == 1 && (e.which >=37 && e.which <=40))
 				{
 				canpress = 0;
                              socket.json.emit('sendmove',{to:e.which , from:myplayerno});
+				}
+			   else if(e.which == 32 && canplantbomb == 1)
+				{	
+                                 var onrow,oncol;
+      				 canplantbomb = 0;
+					if(myplayerno == 1)
+ 					{
+					   onrow = playerone.onrow;
+					   oncol = playerone.oncolumn;
+					}
+					else if(myplayerno == 2)
+					{
+ 					  onrow = playertwo.onrow;
+				 	  oncol = playertwo.oncolumn;
+					}
+			     socket.json.emit('sendbomb',{row:onrow,col:oncol,from:myplayerno});	
 				} 
-                          });
+                        } 
+			 });
                //so that the player should press the arrow key twice to move twice. just understand it wtf!
                  jQuery(window).keyup(function(e){
 			  if(e.which >=37 && e.which <=40)	

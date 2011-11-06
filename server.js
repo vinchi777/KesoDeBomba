@@ -86,8 +86,11 @@ io.sockets.on('connection',function(socket){
 //sends the move of a player to all players in the room.	  
          socket.on('sendmove',function(data){
             io.sockets.in(socket.roomid).json.emit('moveplayer',data);
+	});
+//sends the bomb coords 
+	 socket.on('sendbomb',function(data){
+	  io.sockets.in(socket.roomid).json.emit('plantbomb',data);
 	})
-
 // this fires when a player disconnects in the game.   
           socket.on('disconnect',function(){
                 if(socket.roomid && rooms[socket.roomid].players!=0)

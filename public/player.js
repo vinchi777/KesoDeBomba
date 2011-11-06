@@ -74,6 +74,26 @@ this.canmove = function(direction){
 		return 1;
     }   
 }
+//plant the bomb
+this.plantbomb = function(x,y){
+  var row;
+  var col;
+ row = x * 50;
+ col = y * 50;
+  $('#arena').append("<div id='B"+x+y+"' class='bomb' style='left:"+col+"px; top:"+row+"px;'>" +x+y+" </div> ");
+ var t = setTimeout("explode("+x+","+y+")",2000);
+	
+} 
 
-
+ 
 }
+// end of Player class
+
+//function outside Player class
+function explode(x,y){
+ $("#B"+x+y+"").remove();
+//canplantbomb variable in client.js
+canplantbomb = 1;
+}
+
+ 
