@@ -24,7 +24,7 @@ border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;
 }
 #pone
 {
-background-color:#abc;
+background: transparent url(images/pone.png) 0 0 no-repeat;
 left:0px;
 position:absolute;
 width:50px;
@@ -34,7 +34,7 @@ bottom:0px;
 }
 #ptwo
 {
-background-color:#abc;
+background: transparent url(images/ptwo.png) 0 0 no-repeat;
 left:600px;
 position:absolute;
 width:50px;

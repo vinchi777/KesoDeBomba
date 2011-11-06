@@ -13,11 +13,18 @@ this.initposition = function(){
 	 {
  		this.onrow = 12;
                 this.oncolumn = 0; 
+                $('#pone')
+			  .sprite({fps: 7, no_of_frames: 3})
+			  .active();
+
 	 }
 	 else if(this.playerno == "ptwo")
 	 {
 		 this.onrow = 12;
 		 this.oncolumn =12;
+		$('#ptwo')
+			  .sprite({fps: 7, no_of_frames: 3})
+			  .active();
 	 }
 }
 //to move or animate a player to a specific direction 40 for down 38 for up 37 for left 39 for right. if im not mistaken.
