@@ -85,9 +85,9 @@ this.canmove = function(direction){
 this.plantbomb = function(x,y){
   var row;
   var col;
- row = x * 50;
- col = y * 50;
-  $('#arena').append("<div id='B"+x+y+"' class='bomb' style='left:"+col+"px; top:"+row+"px;'>" +x+y+" </div> ");
+ row = x * 45;
+ col = y * 45;
+  $('#arena').append("<div id='B"+x+y+"' class='bomb' style='left:"+col+"px; top:"+row+"px;'> </div> ");
  var t = setTimeout("explode("+x+","+y+")",2000);
 	
 } 
@@ -98,7 +98,8 @@ this.plantbomb = function(x,y){
 
 //function outside Player class
 function explode(x,y){
- $("#B"+x+y+"").remove();
+ $("#B"+x+y+"").sprite({fps:15 , no_of_frames:26, play_frames:26});
+// $("#B"+x+y+"").remove();
 //canplantbomb variable in client.js
 canplantbomb = 1;
 }
