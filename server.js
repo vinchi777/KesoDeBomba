@@ -3,6 +3,15 @@ var app =express.createServer();
 var io =require('socket.io').listen(app); 
 
 var port = process.env.PORT || 3000;
+app.use(express.static(__dirname + '/public'));
+app.get('/', function(req,res){
+  res.sendfile(__dirname + '/index.html');
+}); 
+
+app.listen(port,function(){
+ console.log("listening on port" + port);
+
+});
 var prevroom;
 var players;
 var rooms = new Array();
@@ -22,15 +31,6 @@ rooms["room2"] =
               {"number": 2, "name": null, "position" : "vacant" }
                 ]
 };
-app.use(express.static(__dirname + '/public'));
-app.listen(port,function(){
- console.log("listening on port" + port);
-
-});
-app.get('/', function(req,res){
-  res.sendfile(__dirname + '/index.html');
-}); 
-
 
 
 
