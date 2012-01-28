@@ -3,22 +3,45 @@
 function Arena(){
 var nrows = 13;
 var ncols = 13;
+var c=0;
+var map1 = "eeceeceeceeee"+
+	   "ebebebebcbebe"+
+	   "eeeeeeeeceeee"+
+	   "ebebebebebebe"+
+	   "eeeeeeeeeeeee"+
+	   "ebebebebebebe"+
+	   "eeeeeeeeeeeee"+
+	   "ebebebebebebe"+
+	   "eeeeeeeeeeeee"+
+	   "ebebebebebebe"+
+	   "eeeeeeeeeeeee"+
+	   "ebebebebebebe"+
+	   "eeeeeeeeeeeee";
 
 //create a 2x2 array
 this.index = new Array(nrows);
+
  for(i=0; i<nrows; i++){
    this.index[i] = new Array(ncols);
   for(j=0; j<ncols; j++)
-   this.index[i][j] = "empty";
+   this.index[i][j] = "";
  }
 	// sets all the blocks in the arena
 	 this.initialize = function(){
-		 for(x=1; x <nrows; x+=2){
-		    for(y=1; y < ncols; y+=2){
-		       this.index[x][y] = "block";
-			var ypos = 50 * y;
- 			var xpos = 50 * x;
-                       $('#arena').append("<div class='block' style='left:"+ypos+"px; top:"+xpos+"px; '> </div> ");
+		 for(x=0; x <nrows && c<169; x++){
+		    for(y=0; y < ncols; y++,c++){
+			    var ypos = 50 * y;
+			    var xpos = 50 * x;
+			    if(map1[c] == 'b'){
+				this.index[x][y] = "block";
+	       			$('#arena').append("<div class='block' style='left:"+ypos+"px; top:"+xpos+"px; '> </div> ");
+			    }
+			    else if(map1[c] == 'c'){
+				this.index[x][y] = "cactus";
+				$('#arena').append("<div class='cactus' id='C"+x+y+"' style='left:"+ypos+"px; top:"+xpos+"px; '></div> ");
+			    }
+			    else
+				this.index[x][y] = "empty";
 		 }
 		}   
 	 }

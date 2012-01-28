@@ -54,28 +54,28 @@ this.move = function(direction){
 this.canmove = function(direction){
    if(direction == 40)
     {
-           if(this.onrow >= 12 || playground.index[this.onrow+1][this.oncolumn] == "block" )
+           if(this.onrow >= 12 || playground.index[this.onrow+1][this.oncolumn] != "empty" )
                 return 0;
 	   else
   		return 1;
     }
     else if(direction == 38)
     {
-	    if( this.onrow <= 0 || playground.index[this.onrow-1][this.oncolumn] == "block"  )
+	    if( this.onrow <= 0 || playground.index[this.onrow-1][this.oncolumn] != "empty"  )
 	        return 0;
 	    else
  		return 1;
     }   
     else if(direction == 37 )
     {
-	    if( this.oncolumn <= 0 || playground.index[this.onrow][this.oncolumn-1] == "block" )
+	    if( this.oncolumn <= 0 || playground.index[this.onrow][this.oncolumn-1] != "empty" )
 	        return 0;
 	    else 
  		return 1;
     }
     else if(direction == 39)
     {
-	    if( this.oncolumn >= 12 ||  playground.index[this.onrow][this.oncolumn+1] == "block")
+	    if( this.oncolumn >= 12 ||  playground.index[this.onrow][this.oncolumn+1] != "empty")
 	        return 0;
 	    else
 		return 1;
@@ -83,12 +83,9 @@ this.canmove = function(direction){
 }
 //plant the bomb
 this.plantbomb = function(x,y){
-  var row;
-  var col;
- row = x * 45;
- col = y * 45;
-  $('#arena').append("<div id='B"+x+y+"' class='bomb' style='left:"+col+"px; top:"+row+"px;'> </div> ");
- var t = setTimeout("explode("+x+","+y+")",2000);
+ 
+ bomb = new Bomb();
+ bomb.init(x,y);
 	
 } 
 
@@ -97,11 +94,6 @@ this.plantbomb = function(x,y){
 // end of Player class
 
 //function outside Player class
-function explode(x,y){
- $("#B"+x+y+"").sprite({fps:15 , no_of_frames:26, play_frames:26});
-// $("#B"+x+y+"").remove();
-//canplantbomb variable in client.js
-canplantbomb = 1;
-}
+
 
  
