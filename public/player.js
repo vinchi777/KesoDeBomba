@@ -84,7 +84,7 @@ this.canmove = function(direction){
 //plant the bomb
 this.plantbomb = function(x,y){
  
- bomb = new Bomb();
+ bomb = new Bomb(pno);
  bomb.init(x,y);
 	
 } 

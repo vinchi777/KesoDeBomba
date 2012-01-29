@@ -1,24 +1,46 @@
-function Bomb(){
-	
+function Bomb(playerno){
+	this.fromplayer = playerno; 
+        var pn = playerno;
+
 	this.init = function(x,y){
 		var row;
 		var col;
-		row = x * 45;
-		col = y * 45;
-  		$('#arena').append("<div id='E"+x+y+"' class='bomb' style='left:"+col+"px; top:"+row+"px;'> </div> ");
-	//	this.findcollision(x,y);
-		var t = setTimeout("explode("+x+","+y+")",1300);  		 		
+		row = x * 50;
+		col = y * 50;
+//		this.findcollision(x,y);
+		$('#arena').append("<div  class='"+playerno+"bomb' style='left:"+col+"px; top:"+row+"px;'> </div> ");
+		var dest ="explode('"+pn+"')"; 
+		var t = setTimeout(dest,1300);
+
+	//	var t = setTimeout("explode("+x+","+y+")",1300);  		 		
 	}
-/*	this.findcollision = function(x,y){
- 	    for(i=0; x<=0 ;)	
-		if(playground.index[x][y] == "empty")	
-		var t = setTimeout("explode("+x+","+y+")",1300);  		 		
+	this.findexplosion = function(x,y){
+/*		var i=x;
+		var row;
+		var col; 
+	    for(k=0; i>0 && playground.index[i][y] == "empty" && k<3 ;i-=1,k++);	
+	    
+	    for(var ctr=0;ctr<5 ;ctr++ )
+	    {
+		    
+		    row = i * 50;
+		    col = y * 50;
+		    if( playground.index[i][y] == "empty")
+		    {
+			  i++;
+		    }else
+			    break;
+	    } */
 	}
-*/	
+	
 }
-function explode(x,y){
-	$("#E"+x+y+"").sprite({fps:15 , no_of_frames:26, play_frames:26});
-	// $("#B"+x+y+"").remove();
+function explode(player){
+	$("."+player+"bomb").sprite({fps:12 , no_of_frames:16, play_frames:16,
+		on_last_frame: function(obj){
+//	$("#arena").remove($("."+player+"bomb").div);
+		}
+			
+	});
 	//canplantbomb variable in client.js
 	canplantbomb = 1;
 }

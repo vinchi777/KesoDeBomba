@@ -84,6 +84,7 @@ socket.on('cleararena',function(){
 				canpress = 0;
                              socket.json.emit('sendmove',{to:e.which , from:myplayerno});
 				}
+		//plant bomb
 			   else if(e.which == 32 && canplantbomb == 1)
 				{	
                                  var onrow,oncol;
