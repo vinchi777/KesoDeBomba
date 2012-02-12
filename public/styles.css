@@ -59,7 +59,7 @@ height:50;
 }
 #ptwobomb
 {
-background: transparent url(images/explosion2.png) 0 0 no-repeat;
+background: transparent url(images/explosion1.png) 0 0 no-repeat;
 position:absolute;
 width:50;
 height:50;
@@ -74,7 +74,7 @@ height:50px;
 }
 .bomb
 {
-background: transparent url(images/explosion2.png) 0 0 no-repeat;
+background: transparent url(images/explosion1.png) 0 0 no-repeat;
 position:absolute;
 width:50;
 height:50;
