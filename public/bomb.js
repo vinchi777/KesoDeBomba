@@ -29,26 +29,77 @@ function scatter(playerno,x,y){
 	pnumb = 2;
 
 	 if(x>=0 && x <13 && y>=0 && y<13){
-            if(x-1 >= 0 && playground.index[x-1][y] == "empty"){
+            if(x-1 >= 0 && (playground.index[x-1][y] == "empty" ||  playground.index[x-1][y] == "cactus") ){
+	    var r  = x-1;	
+	    var layer = 0;
+	    	     if(playground.index[r][y] == "cactus"){
+			$("#C"+r+y).remove();
+			playground.index[r][y] = "empty";
+			layer =1;
+		     }
 		animate(playerno,x-1,y);
-	        if(x-2 >=0 && playground.index[x-2][y] == "empty")
-		animate(playerno,x-2,y); 
+	        if(  (x-2 >=0 && layer != 1 ) && (playground.index[x-2][y] == "empty" ||  playground.index[x-2][y] == "cactus")   ){ 
+		r  = x-2;	
+	    	     if(playground.index[r][y] == "cactus"){
+			$("#C"+r+y).remove();
+			playground.index[r][y] = "empty";
+		     }    
+		animate(playerno,x-2,y);
+		}
 	    }
-	    if(x+1 < 13 && playground.index[x+1][y] == "empty"){
-		animate(playerno,x+1,y);
-		if(x+2 <13 && playground.index[x+2][y] == "empty"){
+	    if(x+1 < 13 && (playground.index[x+1][y] == "empty" ||  playground.index[x+1][y] == "cactus")){
+		var r  = x+1;	
+		var layer = 0;
+	    	     if(playground.index[r][y] == "cactus"){
+			$("#C"+r+y).remove();
+			playground.index[r][y] = "empty";
+			layer =1;
+		     }
+		 animate(playerno,x+1,y);
+		if(  (x+2 <13 && layer != 1 ) && (playground.index[x+2][y] == "empty" ||  playground.index[x+2][y] == "cactus") ){
+		 r  = x+2;	
+	    	     if(playground.index[r][y] == "cactus"){
+			$("#C"+r+y).remove();
+			playground.index[r][y] = "empty";
+		     }
 		animate(playerno,x+2,y);
 		}
 	    }
-	    if(y-1 >=0 && playground.index[x][y-1] == "empty"){
+	    if(y-1 >=0 && (playground.index[x][y-1] == "empty" ||  playground.index[x][y-1] == "cactus")){
+		var c  = y-1;	
+		var layer = 0;
+	    	     if(playground.index[x][c] == "cactus"){
+			$("#C"+x+c).remove();
+			playground.index[x][c] = "empty";
+			layer = 1;
+		     }
 		animate(playerno,x,y-1);
-		if(y-2 >=0 && playground.index[x][y-2] == "empty")
-			animate(playerno,x,y-2);
+		if(  (y-2 >=0 && layer != 1) && (playground.index[x][y-2] == "empty" ||  playground.index[x][y-2] == "cactus") ){
+		 c  = y-2;	
+	    	     if(playground.index[x][c] == "cactus"){
+			$("#C"+x+c).remove();
+			playground.index[x][c] = "empty";
+		     }
+	         animate(playerno,x,y-2);
+		}
 	    }
-  	    if(y+1 < 13 && playground.index[x][y+1] == "empty"){
-		animate(playerno,x,y+1);
-		if(y+2 < 13 && playground.index[x][y+2] == "empty")
-			animate(playerno,x,y+2);
+  	    if(y+1 < 13 && (playground.index[x][y+1] == "empty" ||  playground.index[x][y+1] == "cactus")){
+		var  c  = y+1;	
+		var layer =0;
+	    	     if(playground.index[x][c] == "cactus"){
+			$("#C"+x+c).remove();
+			playground.index[x][c] = "empty";
+			layer =1;
+		     }
+		 animate(playerno,x,y+1);
+		if(  (y+2 < 13 && layer < 1)&& (playground.index[x][y+2] == "empty" ||  playground.index[x][y+2] == "cactus")){
+		c  = y+2;	
+	    	     if(playground.index[x][c] == "cactus"){
+			$("#C"+x+c).remove();
+			playground.index[x][c] = "empty";
+		     }
+		animate(playerno,x,y+2);
+		}
 	    }
 	}
 	

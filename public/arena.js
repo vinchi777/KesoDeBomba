@@ -4,19 +4,19 @@ function Arena(){
 var nrows = 13;
 var ncols = 13;
 var c=0;
-var map1 = "eeceeceeceeee"+
-	   "ebebebebcbebe"+
-	   "eeeeeeeeceeee"+
-	   "ebebebebebebe"+
-	   "eeeeeeeeeeeee"+
-	   "ebebebebebebe"+
-	   "eeeeeeeeeeeee"+
-	   "ebebebebebebe"+
-	   "eeeeeeeeeeeee"+
-	   "ebebebebebebe"+
-	   "eeeeeeeeeeeee"+
-	   "ebebebebebebe"+
-	   "eeeeeeeeeeeee";
+var map1 = "eeceeceececee"+
+	   "cbebebebcbcbe"+
+	   "eeccceeccecec"+
+	   "cbebebebebebc"+
+	   "ceeeccececcee"+
+	   "ebebcbebebcbc"+
+	   "ceceececcecce"+
+	   "ebebcbebebebe"+
+	   "ceeccececeeec"+
+	   "cbebcbcbcbebc"+
+	   "eecceeccceeec"+
+	   "ebebcbebcbebe"+
+	   "eeeeccccceeee";
 
 //create a 2x2 array
 this.index = new Array(nrows);
