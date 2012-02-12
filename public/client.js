@@ -50,9 +50,10 @@ socket.on('moveplayer',function(data){
 //fired when bomb is planted
 socket.on('plantbomb',function(data){
     if(data.from == 1)
-     playerone.plantbomb(data.row,data.col);
+   playerone.plantbomb(data.row,data.col),1;
     else if(data.from == 2)
-     playertwo.plantbomb(data.row,data.col);
+   playertwo.plantbomb(data.row,data.col),1;
+	
 
     
 });

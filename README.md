@@ -7,4 +7,4 @@
 ---------
 
 click [here](http://kesodebomba.heroku.com "kesodebomba.heroku.com") to see the site. 
-Feel free to ask questions but dont expect an answer.
+Feel free to ask questions. 
