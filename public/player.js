@@ -31,6 +31,7 @@ this.initialize = function(){
 }
 //to move or animate a player to  specific direction 40 for down 38 for up 37 for left 39 for right. if im not mistaken.
 this.move = function(direction){
+	
     if(direction == 40)
     {
 		   $("#"+this.playerno).animate({"bottom": "-=50px"}, "fast");
@@ -51,6 +52,7 @@ this.move = function(direction){
 		    $("#"+this.playerno).animate({"left": "+=50px"}, "fast");
 		    this.oncolumn+=1;
     } 
+
 }
 //checks if a player can move. cant move if colides in a block or in the border.
 this.canmove = function(direction){

@@ -9,6 +9,8 @@ var myplayerno;
 var startgame = 0;
 var canpress = 1;
 var canplantbomb = 1;
+var animatecomplete = 0;
+var keyupcomplete = 0;
 // connect to a server
 socket.on('connect',function(){
 });
@@ -35,17 +37,28 @@ socket.on('startgame',function(){
 });
 //is fired when a player moves
 socket.on('moveplayer',function(data){
-		if(data.from == 1 && playerone.canmove(data.to)==1)
+		if(data.from == 1 && playerone.canmove(data.to)==1){
 		playerone.move(data.to);
-		else if(data.from==2 && playertwo.canmove(data.to)==1)
-		playertwo.move(data.to);
+		    
+		}
+		else if(data.from==2 && playertwo.canmove(data.to)==1){
+		playertwo.move(data.to); 
+		   
+		}
+	//so that arrow keys would only triger if move is complete	
+	if(data.from == myplayerno ){
+	animatecomplete = 1;
+           if(keyupcomplete == 1) 
+		canpress = 1;
+	}
+
 });
 //fired when bomb is planted
 socket.on('plantbomb',function(data){
     if(data.from == 1)
-   playerone.plantbomb(data.row,data.col),1;
+   playerone.plantbomb(data.row,data.col);
     else if(data.from == 2)
-   playertwo.plantbomb(data.row,data.col),1;
+   playertwo.plantbomb(data.row,data.col);
 	
 });
 //clears the arena when someone leaves the room or got dc'd
@@ -53,8 +66,16 @@ socket.on('cleararena',function(){
  $("#arena").html("");
  alert("player leaved the game");
 });
-
-     
+	function newgame(){
+	  startgame = 1;
+	$("#arena").html("");
+	  playerone = new Player("pone");
+	  playertwo = new Player("ptwo");
+	  playground = new Arena(); 
+	playground.initialize();
+	playerone.initialize();
+	playertwo.initialize(); 
+	} 
 	 $(document).ready(function(){
 		 $('#roomjoin').click(function(){  
 			 socket.emit('joinroom',$('#roomselect').val());
@@ -71,11 +92,15 @@ socket.on('cleararena',function(){
                 jQuery(window).keydown(function(e){
 
 			if(startgame == 1 )
-   			{
+   			{   //move player
                           if(canpress == 1 && (e.which >=37 && e.which <=40))
 				{
-				canpress = 0;
-                             socket.json.emit('sendmove',{to:e.which , from:myplayerno});
+					if(checkmove(e.which) == 1){
+						animatecomplete = 0;
+						keyupcomplete = 0;
+						canpress = 0;
+						socket.json.emit('sendmove',{to:e.which , from:myplayerno});
+					} 
 				}
 		//plant bomb
 			   else if(e.which == 32 && canplantbomb == 1)
@@ -97,10 +122,13 @@ socket.on('cleararena',function(){
                         } 
 			 });
                //so that the player should press the arrow key twice to move twice. just understand it wtf!
-                 jQuery(window).keyup(function(e){
-			  if(e.which >=37 && e.which <=40)	
-   				canpress = 1;
-				});
+        jQuery(window).keyup(function(e){
+			  if( canpress ==0 && (e.which >=37 && e.which <=40) ){	
+				keyupcomplete = 1;
+	 			if(animatecomplete == 1)
+		                    canpress = 1;
+			  }
+				}); 
 		//diable arrowkeys and spacebar scrolling
 		var keys = new Array;
 		window.addEventListener("keydown",
@@ -118,16 +146,81 @@ socket.on('cleararena',function(){
 				false);
 
 	});
+//dont send coords to server if player cant move
+function checkmove(direction){
+	if(myplayerno == 1)
+	{
+		onrow = playerone.onrow;
+		oncolumn = playerone.oncolumn;
+	}
+	else if(myplayerno == 2)
+	{
+		onrow = playertwo.onrow;
+		oncolumn = playertwo.oncolumn;
+	}
 
-function newgame(){
-  startgame = 1;
-$("#arena").html("");
-  playerone = new Player("pone");
-  playertwo = new Player("ptwo");
-  playground = new Arena(); 
-playground.initialize();
-playerone.initialize();
-playertwo.initialize();
-
+   if(direction == 40)
+    {
+	    var cell = playground.index[onrow+1][oncolumn]; 
+	    if(onrow >= 12 ||  (cell == "block" || cell == "cactus" || cell == "door" || cell == "item") )
+		    return 0;
+	    else if(cell == "hat")
+	    {
+		    return 1;
+	    }
+	    else if(cell == "saloon" )
+	    { 
+		    return 1;
+	    }
+	    else
+		    return 1;
+    }
+    else if(direction == 38)
+    {
+	    var cell = playground.index[onrow-1][oncolumn]; 
+	    if( onrow <= 0 || (cell == "block" || cell == "cactus" || cell == "door" || cell == "item")  )
+		    return 0;
+	    else if(cell == "hat")
+	    { 
+		    return 1;
+	    }  
+	    else if(cell == "saloon" )
+	    { 
+		    return 1;
+	    }
+	    else
+		    return 1;
+    }   
+    else if(direction == 37 )
+    {
+	    var cell = playground.index[onrow][oncolumn-1]; 
+	    if( oncolumn <= 0 || (cell == "block" || cell == "cactus" || cell == "door" || cell == "item") )
+		    return 0;
+	    else if(cell == "hat")
+	    {
+		    return 1;
+	    }
+	    else if(cell == "saloon" )
+	    { 
+		    return 1;
+	    }
+	    else 
+		    return 1;
+    }
+    else if(direction == 39)
+    {
+	    var cell = playground.index[onrow][oncolumn+1]; 
+	    if( oncolumn >= 12 ||  (cell == "block" || cell == "cactus" || cell == "door" || cell == "item") )
+		    return 0;
+	    else if(cell == "hat")
+	    {
+		    return 1;
+	    }
+	    else if(cell == "saloon" )
+	    { 
+		    return 1;
+	    }
+	    else
+		    return 1;
+    }   
 }
-
