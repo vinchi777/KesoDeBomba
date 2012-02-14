@@ -6,6 +6,7 @@
  height:650px;
  margin-left:250px;
  margin-top:50px;
+ z-index:-1;
 }
 #usersdiv
 {
@@ -75,6 +76,20 @@ height:50px;
 .bomb
 {
 background: transparent url(images/explosion1.png) 0 0 no-repeat;
+position:absolute;
+width:50;
+height:50;
+}
+#hat
+{
+background: transparent url(images/mexicanhat.png) 0 0 no-repeat;
+position:absolute;
+width:50;
+height:50;
+}
+#saloon
+{
+background: transparent url(images/saloon.png) 0 0 no-repeat;
 position:absolute;
 width:50;
 height:50;

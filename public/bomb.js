@@ -29,92 +29,56 @@ function scatter(playerno,x,y){
 	pnumb = 2;
 
 	 if(x>=0 && x <13 && y>=0 && y<13){
-            if(x-1 >= 0 && (playground.index[x-1][y] == "empty" ||  playground.index[x-1][y] == "cactus") ){
-	    var r  = x-1;	
-	    var layer = 0;
-	    	     if(playground.index[r][y] == "cactus"){
-			$("#C"+r+y).remove();
-			playground.index[r][y] = "empty";
-			layer =1;
-		     }
+            if(x-1 >= 0 && playground.index[x-1][y] != "block" ){
+	    var r  = x-1;	//first cell
+	    var layer = 0;  
+		layer = checkcollision(r,y);	    	  
 	var dest ="animate('"+playerno+"',"+r+","+y+")"; 
-	var t = setTimeout(dest,1);
-	//	animate(playerno,x-1,y);
-	        if(  (x-2 >=0 && layer != 1 ) && (playground.index[x-2][y] == "empty" ||  playground.index[x-2][y] == "cactus")   ){ 
+	var t = setTimeout(dest,1); //seconde cell
+	        if(  (x-2 >=0 && layer != 1 ) && playground.index[x-2][y] != "block"    ){ 
 		r  = x-2;	
-	    	     if(playground.index[r][y] == "cactus"){
-			$("#C"+r+y).remove();
-			playground.index[r][y] = "empty";
-		     }    
+	  	checkcollision(r,y);  	        
 	var dest ="animate('"+playerno+"',"+r+","+y+")"; 
 	var t = setTimeout(dest,1); 
-	//	animate(playerno,x-2,y);
 		}
 	    }
-	    if(x+1 < 13 && (playground.index[x+1][y] == "empty" ||  playground.index[x+1][y] == "cactus")){
+	    if(x+1 < 13 && playground.index[x+1][y] !="block" ){
 		var r  = x+1;	
 		var layer = 0;
-	    	     if(playground.index[r][y] == "cactus"){
-			$("#C"+r+y).remove();
-			playground.index[r][y] = "empty";
-			layer =1;
-		     }
+	    	   layer = checkcollision(r,y); 
 	var dest ="animate('"+playerno+"',"+r+","+y+")"; 
 	var t = setTimeout(dest,1); 
-	//animate(playerno,x+1,y);
-		if(  (x+2 <13 && layer != 1 ) && (playground.index[x+2][y] == "empty" ||  playground.index[x+2][y] == "cactus") ){
+		if(  (x+2 <13 && layer != 1 ) && playground.index[x+2][y] != "block" ){
 		 r  = x+2;	
-	    	     if(playground.index[r][y] == "cactus"){
-			$("#C"+r+y).remove();
-			playground.index[r][y] = "empty";
-		     }
+	    	    checkcollision(r,y);
 	var dest ="animate('"+playerno+"',"+r+","+y+")"; 
 	var t = setTimeout(dest,1);
-	//animate(playerno,x+2,y);
 		}
 	    }
-	    if(y-1 >=0 && (playground.index[x][y-1] == "empty" ||  playground.index[x][y-1] == "cactus")){
+	    if(y-1 >=0 && playground.index[x][y-1] != "block"){
 		var c  = y-1;	
 		var layer = 0;
-	    	     if(playground.index[x][c] == "cactus"){
-			$("#C"+x+c).remove();
-			playground.index[x][c] = "empty";
-			layer = 1;
-		     }
+	    	     layer = checkcollision(x,c);
 	var dest ="animate('"+playerno+"',"+x+","+c+")"; 
 	var t = setTimeout(dest,1);	
-	//animate(playerno,x,y-1);
-		if(  (y-2 >=0 && layer != 1) && (playground.index[x][y-2] == "empty" ||  playground.index[x][y-2] == "cactus") ){
+		if(  (y-2 >=0 && layer != 1) && playground.index[x][y-2] !="block" ){
 		 c  = y-2;	
-	    	     if(playground.index[x][c] == "cactus"){
-			$("#C"+x+c).remove();
-			playground.index[x][c] = "empty";
-		     }
+	    	    checkcollision(x,c); 
 	var dest ="animate('"+playerno+"',"+x+","+c+")"; 
 	var t = setTimeout(dest,1); 
-	//animate(playerno,x,y-2);
 		}
 	    }
-  	    if(y+1 < 13 && (playground.index[x][y+1] == "empty" ||  playground.index[x][y+1] == "cactus")){
+  	    if(y+1 < 13 && playground.index[x][y+1] !="block"){
 		var  c  = y+1;	
 		var layer =0;
-	    	     if(playground.index[x][c] == "cactus"){
-			$("#C"+x+c).remove();
-			playground.index[x][c] = "empty";
-			layer =1;
-		     }
+		layer = checkcollision(x,c); 
 	 var dest ="animate('"+playerno+"',"+x+","+c+")"; 
 	 var t = setTimeout(dest,1);
-	 //animate(playerno,x,y+1);
-		if(  (y+2 < 13 && layer < 1)&& (playground.index[x][y+2] == "empty" ||  playground.index[x][y+2] == "cactus")){
+		if(  (y+2 < 13 && layer != 1)&& playground.index[x][y+2] !="block"){
 		c  = y+2;	
-	    	     if(playground.index[x][c] == "cactus"){
-			$("#C"+x+c).remove();
-			playground.index[x][c] = "empty";
-		     }
+	    	     checkcollision(x,c);
 	var dest ="animate('"+playerno+"',"+x+","+c+")"; 
 	var t = setTimeout(dest,1);
-	//animate(playerno,x,y+2);
 		}
 	    }
 	}
@@ -135,4 +99,26 @@ var col = j*50;
 		}	
 		}); 
 }
-
+function checkcollision(v,h){
+	var vpos = v * 50;
+	var hpos = h * 50;
+	var result = 0;
+   if(playground.index[v][h] == "cactus"){
+			$("#C"+v+h).remove();
+			playground.index[v][h] = "empty";
+			result = 1;
+		     }
+  else if(playground.index[v][h] == "item"){
+			$("#C"+v+h).remove(); 
+			$('#arena').append("<div   id='hat' style='left:"+hpos+"px; top:"+vpos+"px;'> </div> ");
+			playground.index[v][h] = "hat";		
+			result = 1;
+  }
+   else if(playground.index[v][h] == "door"){
+			$("#C"+v+h).remove(); 
+			$('#arena').append("<div   id='saloon' style='left:"+hpos+"px; top:"+vpos+"px;'> </div> ");
+			playground.index[v][h] = "saloon";		
+			result = 1;
+   }
+  return result;
+}

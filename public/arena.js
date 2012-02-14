@@ -6,9 +6,9 @@ var ncols = 13;
 var c=0;
 var map1 = "eeceeceececee"+
 	   "cbebebebcbcbe"+
-	   "eeccceeccecec"+
+	   "eeccheeccecec"+
 	   "cbebebebebebc"+
-	   "ceeeccececcee"+
+	   "ceeeccecsccee"+
 	   "ebebcbebebcbc"+
 	   "ceceececcecce"+
 	   "ebebcbebebebe"+
@@ -20,14 +20,14 @@ var map1 = "eeceeceececee"+
 
 //create a 2x2 array
 this.index = new Array(nrows);
-
- for(i=0; i<nrows; i++){
-   this.index[i] = new Array(ncols);
-  for(j=0; j<ncols; j++)
-   this.index[i][j] = "";
- }
+	 for(i=0; i<nrows; i++){
+	   this.index[i] = new Array(ncols);
+	  for(j=0; j<ncols; j++)
+	   this.index[i][j] = "";
+	 }
+ 
 	// sets all the blocks in the arena
-	 this.initialize = function(){
+	 this.initialize = function(){ 
 		 for(x=0; x <nrows && c<169; x++){
 		    for(y=0; y < ncols; y++,c++){
 			    var ypos = 50 * y;
@@ -40,9 +40,20 @@ this.index = new Array(nrows);
 				this.index[x][y] = "cactus";
 				$('#arena').append("<div class='cactus' id='C"+x+y+"' style='left:"+ypos+"px; top:"+xpos+"px; '></div> ");
 			    }
+			    else if(map1[c] == 'h'){
+				this.index[x][y] = "item";
+				$('#arena').append("<div class='cactus' id='C"+x+y+"' style='left:"+ypos+"px; top:"+xpos+"px; '></div>")
+			    }
+			    else if(map1[c] == 's'){
+				this.index[x][y] = "door"; 
+				$('#arena').append("<div class='cactus' id='C"+x+y+"' style='left:"+ypos+"px; top:"+xpos+"px; '></div>")
+			    }
 			    else
 				this.index[x][y] = "empty";
 		 }
 		}   
 	 }
+
+	 
 }
+

@@ -31,14 +31,7 @@ socket.on('roomusers',function(data){
 });
 //is called  when the game starts
 socket.on('startgame',function(){   
-  startgame = 1;
-  playerone = new Player("pone");
-  playertwo = new Player("ptwo");
-  playground = new Arena();
-playerone.initposition();
-playertwo.initposition();
-playground.initialize();
-
+	newgame();
 });
 //is fired when a player moves
 socket.on('moveplayer',function(data){
@@ -126,5 +119,15 @@ socket.on('cleararena',function(){
 
 	});
 
+function newgame(){
+  startgame = 1;
+$("#arena").html("");
+  playerone = new Player("pone");
+  playertwo = new Player("ptwo");
+  playground = new Arena(); 
+playground.initialize();
+playerone.initialize();
+playertwo.initialize();
 
+}
 

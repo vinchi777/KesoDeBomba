@@ -6,8 +6,10 @@ oncolumn = in what column the player is located
   this.playerno=pno;
   this.onrow;
   this.oncolumn;
+  this.item;
 // sets position of player	
-this.initposition = function(){
+this.initialize = function(){
+ this.item = 0;
  $("#arena").append("<div id="+this.playerno+">"+this.playerno+"</div>");
 	 if(this.playerno == "pone")
 	 {
@@ -27,7 +29,7 @@ this.initposition = function(){
 			  .active();
 	 }
 }
-//to move or animate a player to a specific direction 40 for down 38 for up 37 for left 39 for right. if im not mistaken.
+//to move or animate a player to  specific direction 40 for down 38 for up 37 for left 39 for right. if im not mistaken.
 this.move = function(direction){
     if(direction == 40)
     {
@@ -54,29 +56,71 @@ this.move = function(direction){
 this.canmove = function(direction){
    if(direction == 40)
     {
-           if(this.onrow >= 12 || playground.index[this.onrow+1][this.oncolumn] != "empty" )
+	    var cell = playground.index[this.onrow+1][this.oncolumn]; 
+           if(this.onrow >= 12 ||  (cell == "block" || cell == "cactus" || cell == "door" || cell == "item") )
                 return 0;
+	   else if(cell == "hat")
+	   {
+		   this.item = 1;
+		   $("#hat").remove();
+		   return 1;
+	   }
+ 	   else if(cell == "saloon" && this.item ==1){
+		alert(this.playerno + "  wins!")
+		newgame();
+	    }
 	   else
   		return 1;
     }
     else if(direction == 38)
     {
-	    if( this.onrow <= 0 || playground.index[this.onrow-1][this.oncolumn] != "empty"  )
+	    var cell = playground.index[this.onrow-1][this.oncolumn]; 
+	    if( this.onrow <= 0 || (cell == "block" || cell == "cactus" || cell == "door" || cell == "item")  )
 	        return 0;
+	   else if(cell == "hat")
+	   {
+		   this.item = 1;
+		   $("#hat").remove();
+		   return 1;
+	   }  
+	    else if(cell == "saloon" && this.item ==1){
+		alert(this.playerno + "  wins!")
+			newgame();
+	    }
 	    else
  		return 1;
     }   
     else if(direction == 37 )
     {
-	    if( this.oncolumn <= 0 || playground.index[this.onrow][this.oncolumn-1] != "empty" )
+	    var cell = playground.index[this.onrow][this.oncolumn-1]; 
+	    if( this.oncolumn <= 0 || (cell == "block" || cell == "cactus" || cell == "door" || cell == "item") )
 	        return 0;
+	   else if(cell == "hat"){
+		   this.item = 1;
+		   $("#hat").remove();
+		   return 1;
+	   }
+	   else if(cell == "saloon" && this.item ==1){
+		alert(this.playerno + "  wins!")
+			newgame();
+	   }
 	    else 
  		return 1;
     }
     else if(direction == 39)
     {
-	    if( this.oncolumn >= 12 ||  playground.index[this.onrow][this.oncolumn+1] != "empty")
+	    var cell = playground.index[this.onrow][this.oncolumn+1]; 
+	    if( this.oncolumn >= 12 ||  (cell == "block" || cell == "cactus" || cell == "door" || cell == "item") )
 	        return 0;
+	   else if(cell == "hat"){
+		   this.item = 1;
+		   $("#hat").remove();
+		   return 1;
+	   }
+	    else if(cell == "saloon" && this.item ==1){
+		alert(this.playerno + "  wins!")
+			newgame();
+	    }
 	    else
 		return 1;
     }   
