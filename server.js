@@ -42,7 +42,7 @@ io.sockets.on('connection',function(socket){
                 if(socket.roomid == roomname)                
 		    socket.json.emit('joined',{msg:"on the same room" , playerno:4});
  	   	else if(rooms[roomname].players < 2 )   
-		 {       
+		 {                        //when player changes rooms 
                                 if(socket.roomid)
 				 {
 				 rooms[socket.roomid].players-=1;
@@ -50,12 +50,14 @@ io.sockets.on('connection',function(socket){
                                  io.sockets.in(socket.roomid).emit('cleararena');
 				 socket.leave(socket.roomid);
              	 		 io.sockets.json.emit('roomusers',{room:socket.roomid, players:rooms[socket.roomid].players})
-                                 }	
+                                 }
+	 			//join as player one	
 				 if(rooms[roomname].playerinfo[0].position == "vacant")
 				  {
 					socket.playerno = 0;
                                         rooms[roomname].playerinfo[0].position = "taken"; 
 				  }
+	 			//join as player two
 				else if(rooms[roomname].playerinfo[0].position == "taken")
 				{
 					socket.playerno = 1;
@@ -74,7 +76,7 @@ io.sockets.on('connection',function(socket){
 
         	 } 
                  else 
-		 {
+		 { // playerno = 4 if room is full
 		    socket.json.emit('roomusers',{room:roomname , players:rooms[roomname].players})
 		    socket.json.emit('joined',{msg:"room is full" , playerno:4});
 		 }      
@@ -91,7 +93,7 @@ io.sockets.on('connection',function(socket){
 	 socket.on('sendbomb',function(data){
 	  io.sockets.in(socket.roomid).json.emit('plantbomb',data);
 	})
-// this fires when a player disconnects in the game.   
+// called  when a player disconnects in the game.   
           socket.on('disconnect',function(){
                 if(socket.roomid && rooms[socket.roomid].players!=0)
 		 { 

@@ -1,8 +1,7 @@
 #arena
 {
- 
+ background: transparent url(images/desert.jpg) 0 0 no-repeat; 
  position:relative;
- background-color:green;
  width:650px;
  height:650px;
  margin-left:250px;
@@ -44,7 +43,7 @@ bottom:0px;
 }
 .block
 {
-background-color:black;
+background: transparent url(images/skull.png) 0 0 no-repeat;
 position:absolute;
 width:50px;
 height:50px;
@@ -66,7 +65,8 @@ height:50;
 }
 .cactus
 {
-background-color:yellow;
+background: transparent url(images/cactus.png) 0 0 no-repeat;
+position:absolute;
 position:absolute;
 width:50px;
 height:50px;

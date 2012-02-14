@@ -29,7 +29,7 @@ socket.on('updatechat',function(msg){
 socket.on('roomusers',function(data){
   $("#"+data.room).html(data.players+" players"); 
 });
-//is fired when the game starts
+//is called  when the game starts
 socket.on('startgame',function(){   
   startgame = 1;
   playerone = new Player("pone");
@@ -54,12 +54,11 @@ socket.on('plantbomb',function(data){
     else if(data.from == 2)
    playertwo.plantbomb(data.row,data.col),1;
 	
-
-    
 });
 //clears the arena when someone leaves the room or got dc'd
 socket.on('cleararena',function(){
  $("#arena").html("");
+ alert("player leaved the game");
 });
 
      

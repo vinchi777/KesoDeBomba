@@ -37,14 +37,18 @@ function scatter(playerno,x,y){
 			playground.index[r][y] = "empty";
 			layer =1;
 		     }
-		animate(playerno,x-1,y);
+	var dest ="animate('"+playerno+"',"+r+","+y+")"; 
+	var t = setTimeout(dest,1);
+	//	animate(playerno,x-1,y);
 	        if(  (x-2 >=0 && layer != 1 ) && (playground.index[x-2][y] == "empty" ||  playground.index[x-2][y] == "cactus")   ){ 
 		r  = x-2;	
 	    	     if(playground.index[r][y] == "cactus"){
 			$("#C"+r+y).remove();
 			playground.index[r][y] = "empty";
 		     }    
-		animate(playerno,x-2,y);
+	var dest ="animate('"+playerno+"',"+r+","+y+")"; 
+	var t = setTimeout(dest,1); 
+	//	animate(playerno,x-2,y);
 		}
 	    }
 	    if(x+1 < 13 && (playground.index[x+1][y] == "empty" ||  playground.index[x+1][y] == "cactus")){
@@ -55,14 +59,18 @@ function scatter(playerno,x,y){
 			playground.index[r][y] = "empty";
 			layer =1;
 		     }
-		 animate(playerno,x+1,y);
+	var dest ="animate('"+playerno+"',"+r+","+y+")"; 
+	var t = setTimeout(dest,1); 
+	//animate(playerno,x+1,y);
 		if(  (x+2 <13 && layer != 1 ) && (playground.index[x+2][y] == "empty" ||  playground.index[x+2][y] == "cactus") ){
 		 r  = x+2;	
 	    	     if(playground.index[r][y] == "cactus"){
 			$("#C"+r+y).remove();
 			playground.index[r][y] = "empty";
 		     }
-		animate(playerno,x+2,y);
+	var dest ="animate('"+playerno+"',"+r+","+y+")"; 
+	var t = setTimeout(dest,1);
+	//animate(playerno,x+2,y);
 		}
 	    }
 	    if(y-1 >=0 && (playground.index[x][y-1] == "empty" ||  playground.index[x][y-1] == "cactus")){
@@ -73,14 +81,18 @@ function scatter(playerno,x,y){
 			playground.index[x][c] = "empty";
 			layer = 1;
 		     }
-		animate(playerno,x,y-1);
+	var dest ="animate('"+playerno+"',"+x+","+c+")"; 
+	var t = setTimeout(dest,1);	
+	//animate(playerno,x,y-1);
 		if(  (y-2 >=0 && layer != 1) && (playground.index[x][y-2] == "empty" ||  playground.index[x][y-2] == "cactus") ){
 		 c  = y-2;	
 	    	     if(playground.index[x][c] == "cactus"){
 			$("#C"+x+c).remove();
 			playground.index[x][c] = "empty";
 		     }
-	         animate(playerno,x,y-2);
+	var dest ="animate('"+playerno+"',"+x+","+c+")"; 
+	var t = setTimeout(dest,1); 
+	//animate(playerno,x,y-2);
 		}
 	    }
   	    if(y+1 < 13 && (playground.index[x][y+1] == "empty" ||  playground.index[x][y+1] == "cactus")){
@@ -91,21 +103,25 @@ function scatter(playerno,x,y){
 			playground.index[x][c] = "empty";
 			layer =1;
 		     }
-		 animate(playerno,x,y+1);
+	 var dest ="animate('"+playerno+"',"+x+","+c+")"; 
+	 var t = setTimeout(dest,1);
+	 //animate(playerno,x,y+1);
 		if(  (y+2 < 13 && layer < 1)&& (playground.index[x][y+2] == "empty" ||  playground.index[x][y+2] == "cactus")){
 		c  = y+2;	
 	    	     if(playground.index[x][c] == "cactus"){
 			$("#C"+x+c).remove();
 			playground.index[x][c] = "empty";
 		     }
-		animate(playerno,x,y+2);
+	var dest ="animate('"+playerno+"',"+x+","+c+")"; 
+	var t = setTimeout(dest,1);
+	//animate(playerno,x,y+2);
 		}
 	    }
 	}
 	
 
 	if(pnumb == myplayerno)
-	var t = setTimeout(function(){canplantbomb=1;},1000);
+	var tm = setTimeout(function(){canplantbomb=1;},1000);
 }
 function animate(playerno,i,j){
 var row= i*50;
