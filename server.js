@@ -5,8 +5,11 @@ var io =require('socket.io').listen(app);
 var port = process.env.PORT || 3000;
 app.use(express.static(__dirname + '/public'));
 app.get('/', function(req,res){
-  res.sendfile(__dirname + '/index.html');
+  res.sendfile(__dirname + '/login.html');
 }); 
+app.get('/game',function(req,res){
+ res.sendfile(__dirname + '/game.html');	
+});
 
 app.listen(port,function(){
  console.log("listening on port" + port);
@@ -71,7 +74,8 @@ io.sockets.on('connection',function(socket){
 	
 				 if(rooms[roomname].players == 2)
 				 {
-				 io.sockets.in(roomname).json.emit('startgame');
+				 var random = Math.floor(Math.random()*5);
+				 io.sockets.in(roomname).json.emit('startgame',random);
 				 }
 
         	 } 

@@ -65,10 +65,12 @@ this.canmove = function(direction){
 	   {
 		   this.item = 1;
 		   $("#hat").remove();
+		   $("#"+pno).spState(2);
 		   return 1;
 	   }
  	   else if(cell == "saloon" && this.item ==1){
 		alert(this.playerno + "  wins!")
+		cleanSprite();
 		newgame();
 	    }
 	   else
@@ -83,10 +85,12 @@ this.canmove = function(direction){
 	   {
 		   this.item = 1;
 		   $("#hat").remove();
+		   $("#"+pno).spState(2);
 		   return 1;
 	   }  
 	    else if(cell == "saloon" && this.item ==1){
 		alert(this.playerno + "  wins!")
+			cleanSprite();
 			newgame();
 	    }
 	    else
@@ -100,10 +104,12 @@ this.canmove = function(direction){
 	   else if(cell == "hat"){
 		   this.item = 1;
 		   $("#hat").remove();
+		   $("#"+pno).spState(2);
 		   return 1;
 	   }
 	   else if(cell == "saloon" && this.item ==1){
 		alert(this.playerno + "  wins!")
+			cleanSprite();
 			newgame();
 	   }
 	    else 
@@ -117,10 +123,12 @@ this.canmove = function(direction){
 	   else if(cell == "hat"){
 		   this.item = 1;
 		   $("#hat").remove();
+		   $("#"+pno).spState(2);
 		   return 1;
 	   }
 	    else if(cell == "saloon" && this.item ==1){
 		alert(this.playerno + "  wins!")
+			cleanSprite();
 			newgame();
 	    }
 	    else
@@ -135,10 +143,13 @@ this.plantbomb = function(x,y){
 	
 } 
 
- 
 }
 // end of Player class
-
+function cleanSprite()
+{
+ $("#pone").remove();
+ $("#ptwo").remove();
+}
 //function outside Player class
 
 
