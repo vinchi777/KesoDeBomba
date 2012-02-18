@@ -65,6 +65,7 @@ this.canmove = function(direction){
 	   {
 		   this.item = 1;
 		   $("#hat").remove();
+		   playground.index[this.onrow+1][this.oncolumn] = "empty";
 		   $("#"+pno).spState(2);
 		   return 1;
 	   }
@@ -85,6 +86,7 @@ this.canmove = function(direction){
 	   {
 		   this.item = 1;
 		   $("#hat").remove();
+		   playground.index[this.onrow-1][this.oncolumn] = "empty";
 		   $("#"+pno).spState(2);
 		   return 1;
 	   }  
@@ -104,6 +106,7 @@ this.canmove = function(direction){
 	   else if(cell == "hat"){
 		   this.item = 1;
 		   $("#hat").remove();
+		   playground.index[this.onrow][this.oncolumn-1] = "empty";
 		   $("#"+pno).spState(2);
 		   return 1;
 	   }
@@ -123,6 +126,7 @@ this.canmove = function(direction){
 	   else if(cell == "hat"){
 		   this.item = 1;
 		   $("#hat").remove();
+		   playground.index[this.onrow][this.oncolumn+1] = "empty";
 		   $("#"+pno).spState(2);
 		   return 1;
 	   }
