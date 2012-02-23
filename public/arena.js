@@ -1,5 +1,6 @@
-//this class is for the whole arena, implemented in a 2x2 multidimensional array.
+//this script is for the whole arena, implemented in a 2x2 multidimensional array.
 //index is the coords of the matrix
+
 var map1 = "ceccecescecce"+
 	   "cbcbcbcbcbcbe"+
 	   "eeccceeccecec"+

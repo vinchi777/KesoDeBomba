@@ -1,0 +1,32 @@
+html
+        head
+                script(src='/socket.io/socket.io.js') 
+                script(src='scripts/jquery-1.7.1.min.js', type='text/javascript') 
+                script(type='text/javascript', src='client.js')
+                link(rel='StyleSheet', href='styles.css', type='text/css')
+                script(type='text/javascript', src='player.js')
+                script(type='text/javascript', src='arena.js')
+                script(type='text/javascript', src='bomb.js')
+                script(src='scripts/jquery.spritely-0.6.js', type='text/javascript')
+        body
+                #usersdiv
+                        b USERS
+                        #users
+                                | ROOM 1:
+                                #room1
+                                | ROOM 2:
+                        #room2
+                #roomdiv
+                        select#roomselect
+                                option(value='room1') room1
+                                option(value='room2') room2
+                        input#roomjoin(type='button', value='join room')
+                #chatdiv
+                        | Chat:
+                        input#chat(type='text' , size='18')
+                #status
+                #msgdiv
+                        textarea#msg(rows='20', cols='20')
+                #wrapper
+                        #arena
+                div!=name

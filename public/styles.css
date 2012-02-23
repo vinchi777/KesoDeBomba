@@ -5,22 +5,41 @@
  width:650px;
  height:650px;
  margin-left:250px;
- margin-top:50px;
+ margin-top:1px;
  z-index:-1;
+}
+#roomdiv
+{
+position:absolute;
+top:10px;
+left:20px;
+}
+#chatdiv
+{
+position:absolute;
+top:120px;
+left:920px;
+background-color:yellow;
+}
+#status
+{
+ position:absolute;
+ top:10px;
+ left:920px;
 }
 #usersdiv
 {
-float:left;
-margin-top:80px;
-width:100px;
-border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;
+position:absolute;
+left:20px;
+top:50px;
+width:170px;
 }
-#msg
-{
-
- float:left;
- width:200px;
- margin-top:50px;
+#msgdiv
+{ 
+float:left;
+margin-left:920px;
+margin-top:160px;
+width:200;
 }
 #pone
 {

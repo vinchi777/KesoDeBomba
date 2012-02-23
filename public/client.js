@@ -17,16 +17,16 @@ socket.on('connect',function(){
 });
 //this is called when a player has joined the room.
 socket.on('joined',function(data){
-    $('#msg').html(data.msg+'</br>');
+    $('#status').html(data.msg+'</br>');
  if(data.playerno != 4)
  {
   myplayerno = data.playerno+1;
-    $('#msg').append(' player '+ myplayerno+'</br>');
+    $('#status').append(' player '+ myplayerno+'</br>');
  }
 });
 //this is called when someone chats in the room.
 socket.on('updatechat',function(msg){  
-    $('#msg').append(msg+"</br>");
+    $('#msg').append(msg+'\n');
 });
 //tells how many users are in the room.
 socket.on('roomusers',function(data){
@@ -70,7 +70,11 @@ socket.on('cleararena',function(){
 });
 function newgame(){
 	startgame = 1;
-	$("#arena").html("");
+	if($('#pone').length>0)
+		$('#pone').remove();
+	if($('#ptwo').length>0)
+		$('#ptwo').remove();
+	$("#arena").html(""); 
 	playerone = new Player("pone");
 	playertwo = new Player("ptwo");
 	playground = new Arena(); 

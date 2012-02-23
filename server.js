@@ -4,11 +4,24 @@ var io =require('socket.io').listen(app);
 
 var port = process.env.PORT || 3000;
 app.use(express.static(__dirname + '/public'));
+app.use(express.bodyParser());
+app.set('view engine','jade');
+app.set('view options', {
+	  layout: false
+});
+
+
+app.post('/test',function(req,res){
+ res.render(__dirname + '/test.jade',{name:req.body.name});
+});
 app.get('/', function(req,res){
   res.sendfile(__dirname + '/login.html');
 }); 
+app.post('/game',function(req,res){
+ res.render(__dirname + '/game.jade',{name:req.body.name});	
+});
 app.get('/game',function(req,res){
- res.sendfile(__dirname + '/game.html');	
+ res.render(__dirname + '/game.jade',{name:req.body.name});	
 });
 
 app.listen(port,function(){
