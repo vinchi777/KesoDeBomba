@@ -2,8 +2,7 @@
 myplayerno = sets the player number.
 startgame = starts game if startgame == 1 
 canpress = can press arrowkeys when canpress == 1, to have time interval in pressing the arrowkeys
-*/
-
+*/ 
 var socket = io.connect();
 var myplayerno;  
 var startgame = 0;
@@ -12,9 +11,18 @@ var canplantbomb = 1;
 var animatecomplete = 0;
 var keyupcomplete = 0;
 var mapno = 0;
+var conString = "postgres://postgres:calimbas@localhost/mydb";
 // connect to a server
-socket.on('connect',function(){
+socket.on('connect',function(){ 
+	pg.connect(conString, function(err, client) {
+		client.query("SELECT NOW() as when", function(err, result) {
+			console.log("Row count: %d",result.rows.length);  // 1
+			console.log("Current year: %d", result.rows[0].when.getYear());
+		});
+	});
+
 });
+
 //this is called when a player has joined the room.
 socket.on('joined',function(data){
     $('#status').html(data.msg+'</br>');

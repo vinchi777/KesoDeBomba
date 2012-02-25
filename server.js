@@ -1,6 +1,8 @@
 var express = require('express');
 var app =express.createServer();
 var io =require('socket.io').listen(app); 
+var sys = require ('util');
+var pg = require('pg');
 
 var port = process.env.PORT || 3000;
 app.use(express.static(__dirname + '/public'));
