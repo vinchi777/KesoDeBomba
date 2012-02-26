@@ -1,10 +1,15 @@
 var express = require('express');
 var app =express.createServer();
 var io =require('socket.io').listen(app); 
-var sys = require ('util');
-var pg = require('pg');
-
+var pg = require('pg'); 
+//var conString = "postgres://postgres:calimbas@localhost/mydb";
+var conString = process.env.DATABASE_URL;
 var port = process.env.PORT || 3000;
+var functions = require('./serverfunctions.js');
+var MemoryStore = require('express').session.MemoryStore;
+
+app.use(express.cookieParser());
+app.use(express.session({ secret: "keyboard cat", store: new MemoryStore({ reapInterval:  60000 * 10 })}));
 app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
 app.set('view engine','jade');
@@ -12,18 +17,31 @@ app.set('view options', {
 	  layout: false
 });
 
-
-app.post('/test',function(req,res){
- res.render(__dirname + '/test.jade',{name:req.body.name});
-});
-app.get('/', function(req,res){
-  res.sendfile(__dirname + '/login.html');
+app.get('/', function(req,res){ 
+  res.render(__dirname + '/login.jade',{access:"login to play the game"});
 }); 
+//for post request of game.jade
 app.post('/game',function(req,res){
- res.render(__dirname + '/game.jade',{name:req.body.name});	
+ var form = req.body;   
+ req.session.name = req.body.name;
+ if(req.body.submit == "login"){
+	functions.login(pg,conString,form);
+ }
+ else if(req.body.submit == "register"){
+ }
+ res.render(__dirname + '/game.jade',{name:req.session.name});
+ 
 });
+//for get request of game.jade
 app.get('/game',function(req,res){
- res.render(__dirname + '/game.jade',{name:req.body.name});	
+ if(req.session.name){
+    res.render(__dirname + '/game.jade',{name:req.session.name});	
+ }
+ else{ 
+ // send back to page
+  res.render(__dirname + '/login.jade',{access:"login to play the game"});	
+  console.log("not logged in");
+ }
 });
 
 app.listen(port,function(){
@@ -53,8 +71,7 @@ rooms["room2"] =
 
 
 io.sockets.on('connection',function(socket){
-	
-// when a player joins a room, joinroom event is called.
+	// when a player joins a room, joinroom event is called.
          socket.on('joinroom',function(roomname){        
 
                 if(socket.roomid == roomname)                

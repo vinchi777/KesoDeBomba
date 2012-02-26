@@ -11,16 +11,8 @@ var canplantbomb = 1;
 var animatecomplete = 0;
 var keyupcomplete = 0;
 var mapno = 0;
-var conString = "postgres://postgres:calimbas@localhost/mydb";
 // connect to a server
 socket.on('connect',function(){ 
-	pg.connect(conString, function(err, client) {
-		client.query("SELECT NOW() as when", function(err, result) {
-			console.log("Row count: %d",result.rows.length);  // 1
-			console.log("Current year: %d", result.rows[0].when.getYear());
-		});
-	});
-
 });
 
 //this is called when a player has joined the room.
