@@ -2,10 +2,12 @@ var express = require('express');
 var app =express.createServer();
 var io =require('socket.io').listen(app); 
 var pg = require('pg'); 
-//var conString = "postgres://postgres:calimbas@localhost/mydb";
-var conString = process.env.DATABASE_URL;
+//for localhost
+var conString = "postgres://postgres:calimbas@localhost/mydb";
+//for heroku host
+//var conString = process.env.DATABASE_URL;
 var port = process.env.PORT || 3000;
-var functions = require('./serverfunctions.js');
+var functions = require('./controllers.js');
 var MemoryStore = require('express').session.MemoryStore;
 
 app.use(express.cookieParser());
@@ -18,19 +20,20 @@ app.set('view options', {
 });
 
 app.get('/', function(req,res){ 
+  delete req.session.name;
   res.render(__dirname + '/login.jade',{access:"login to play the game"});
 }); 
 //for post request of game.jade
 app.post('/game',function(req,res){
  var form = req.body;   
- req.session.name = req.body.name;
+ var result = "";
  if(req.body.submit == "login"){
-	functions.login(pg,conString,form);
+    functions.login(pg,conString,form,res,req);
  }
  else if(req.body.submit == "register"){
+    functions.register(pg,conString,form,res);
  }
- res.render(__dirname + '/game.jade',{name:req.session.name});
- 
+  
 });
 //for get request of game.jade
 app.get('/game',function(req,res){
