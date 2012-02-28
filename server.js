@@ -43,7 +43,6 @@ app.get('/game',function(req,res){
  else{ 
  // send back to page
   res.render(__dirname + '/login.jade',{access:"login to play the game"});	
-  console.log("not logged in");
  }
 });
 
