@@ -15,15 +15,14 @@ html
         #login
                 form(action="game", id="loginfrm" , method="post")
                         | Username:
-                        input(type="text", name="name",class="required", minlength="4" )
-                        br 
+                        input(type="text", name="name",class="required", minlength="4" ) 
                         | Password:
                         input(type="password", name="password", class="required", minlength="4")
-                        br
+                     
                         input(type="submit", class="submit", value="login",name="submit")  
                         | or
                         input(type="button", value="register", onclick="register();")
-                   div!= access
+                 div!= access
          #register 
                  form(action="game",method="post",id="registerfrm")
                          | Username 

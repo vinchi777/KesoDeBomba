@@ -66,7 +66,7 @@ this.canmove = function(direction){
 		   this.item = 1;
 		   $("#hat").remove();
 		   playground.index[this.onrow+1][this.oncolumn] = "empty";
-		   $("#"+pno).spState(2);
+		   $("#"+pno).spState(2); //change sprite to player with hat
 		   return 1;
 	   }
  	   else if(cell == "saloon" && this.item ==1){

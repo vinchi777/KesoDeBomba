@@ -12,7 +12,7 @@ var map1 = "ceccecescecce"+
 	   "ceeccececeeec"+
 	   "cbebcbcbcbebc"+
 	   "eecceeccceeec"+
-	   "ebebcbebcbebe"+
+	   "ebcbcbebcbebe"+
 	   "eeeeccccceeee";
 
 var map2 = "eeceeceececee"+
@@ -26,7 +26,7 @@ var map2 = "eeceeceececee"+
 	   "ccecccceceeec"+
 	   "cbebcbcbcbebc"+
 	   "eecceeccceeec"+
-	   "ebebcbebcbebe"+
+	   "ebcbcbebcbebe"+
 	   "eeeeccccceeee";
 
 var map3 = "seceeceececeh"+
@@ -40,7 +40,7 @@ var map3 = "seceeceececeh"+
 	   "ceeccececeeec"+
 	   "cbcbcbcbecbec"+
 	   "cecceecccecec"+
-	   "ebcbcbebcbebe"+
+	   "cbcbcbebcbebe"+
 	   "eeeeccccceeee";
 
 var map4 = "eeceeceececee"+
@@ -54,7 +54,7 @@ var map4 = "eeceeceececee"+
 	   "ceecccceeccec"+
 	   "cbebcbcbcbebc"+
 	   "eecceeccceeec"+
-	   "ebebsbebcbebe"+
+	   "ebcbsbebcbebe"+
 	   "eeeccccccceee";
 
 var map5 = "eececcsccecee"+
@@ -68,7 +68,7 @@ var map5 = "eececcsccecee"+
 	   "ceeccececeeec"+
 	   "cbebcbcbcbebc"+
 	   "eecceeccceeec"+
-	   "ebebcbebcbebe"+
+	   "ebcbcbebcbebe"+
 	   "eeeccchccceee";
 function Arena(){
 var nrows = 13;

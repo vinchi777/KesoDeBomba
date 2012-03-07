@@ -3,9 +3,9 @@ var app =express.createServer();
 var io =require('socket.io').listen(app); 
 var pg = require('pg'); 
 //for localhost
-//var conString = "postgres://postgres:calimbas@localhost/mydb";
+var conString = "postgres://postgres:password@localhost/mydb";
 //for heroku host
-var conString = process.env.DATABASE_URL;
+//var conString = process.env.DATABASE_URL;
 var port = process.env.PORT || 3000;
 var functions = require('./controllers.js');
 var MemoryStore = require('express').session.MemoryStore;

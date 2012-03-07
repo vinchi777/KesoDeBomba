@@ -24,9 +24,11 @@ html
                 #chatdiv
                         | Chat:
                         input#chat(type='text' , size='18')
+                #welcome
+                        | Welcome
+                        !=name 
                 #status
                 #msgdiv
                         textarea#msg(rows='20', cols='20')
                 #wrapper
                         #arena
-                div!=name

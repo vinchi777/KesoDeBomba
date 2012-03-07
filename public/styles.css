@@ -21,6 +21,12 @@ top:120px;
 left:920px;
 background-color:yellow;
 }
+#welcome
+{
+ position:absolute;
+ top:180px;
+ left:20px;
+}
 #status
 {
  position:absolute;
@@ -117,10 +123,16 @@ height:50;
 /* login.html */
 #login
 {
-
+position:absolute;
+top:150px;
+left:400px;
 }
 #register
 {
 visibility:hidden; 
+position:absolute;
+top:400px;
+left:400px;
 }
+
 
