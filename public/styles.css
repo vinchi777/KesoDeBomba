@@ -134,5 +134,9 @@ position:absolute;
 top:400px;
 left:400px;
 }
+#label
+{
+width: 8em; float: left;
+}
 
 

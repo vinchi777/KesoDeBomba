@@ -103,22 +103,42 @@ function checkcollision(v,h){
 	var vpos = v * 50;
 	var hpos = h * 50;
 	var result = 0;
-   if(playground.index[v][h] == "cactus"){
-			$("#C"+v+h).remove();
-			playground.index[v][h] = "empty";
-			result = 1;
-		     }
-  else if(playground.index[v][h] == "item"){
-			$("#C"+v+h).remove(); 
+	if(playground.index[v][h] == "cactus"){
+		$("#C"+v+h).remove();
+		playground.index[v][h] = "empty";
+		result = 1;
+	}
+	else if(playground.index[v][h] == "item"){
+		$("#C"+v+h).remove(); 
+		$('#arena').append("<div   id='hat' style='left:"+hpos+"px; top:"+vpos+"px;'> </div> ");
+		playground.index[v][h] = "hat";		
+		result = 1;
+	}
+	else if(playground.index[v][h] == "door"){
+		$("#C"+v+h).remove(); 
+		$('#arena').append("<div   id='saloon' style='left:"+hpos+"px; top:"+vpos+"px;'> </div> ");
+		playground.index[v][h] = "saloon";		
+		result = 1;
+	}
+    
+	if(v == playerone.onrow && h == playerone.oncolumn){ 
+		$("#pone").remove();
+		if(playerone.item == 1)
+		{
 			$('#arena').append("<div   id='hat' style='left:"+hpos+"px; top:"+vpos+"px;'> </div> ");
-			playground.index[v][h] = "hat";		
-			result = 1;
-  }
-   else if(playground.index[v][h] == "door"){
-			$("#C"+v+h).remove(); 
-			$('#arena').append("<div   id='saloon' style='left:"+hpos+"px; top:"+vpos+"px;'> </div> ");
-			playground.index[v][h] = "saloon";		
-			result = 1;
-   }
-  return result;
+			playground.index[v][h] = "hat";
+		}
+		playerone.initialize(); 
+		
+	}
+	else if (v == playertwo.onrow && h == playertwo.oncolumn){ 
+		$("#ptwo").remove();
+		if(playertwo.item == 1)
+		{
+			$('#arena').append("<div   id='hat' style='left:"+hpos+"px; top:"+vpos+"px;'> </div> "); 
+			playground.index[v][h] = "hat"; 
+		}
+		playertwo.initialize(); 
+	} 
+	return result;
 }

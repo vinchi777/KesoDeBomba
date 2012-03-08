@@ -40,12 +40,12 @@ var map3 = "seceeceececeh"+
 	   "ceeccececeeec"+
 	   "cbcbcbcbecbec"+
 	   "cecceecccecec"+
-	   "cbcbcbebcbebe"+
+	   "ebebcbebcbebe"+
 	   "eeeeccccceeee";
 
 var map4 = "eeceeceececee"+
 	   "cbebebebcbcbe"+
-	   "eeccceeccechc"+
+	   "eeccceecceccc"+
 	   "cbcbebebebcbc"+
 	   "cececcecccccc"+
 	   "ebebcbcbcbcbc"+
@@ -55,7 +55,7 @@ var map4 = "eeceeceececee"+
 	   "cbebcbcbcbebc"+
 	   "eecceeccceeec"+
 	   "ebcbsbebcbebe"+
-	   "eeeccccccceee";
+	   "eeechccccceee";
 
 var map5 = "eececcsccecee"+
 	   "cbebebebcbcbe"+

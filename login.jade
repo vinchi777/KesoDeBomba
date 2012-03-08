@@ -14,26 +14,27 @@ html
    body
         #login
                 form(action="game", id="loginfrm" , method="post")
-                        | Username:
+                        span#label Username:
                         input(type="text", name="name",class="required", minlength="4" ) 
-                        | Password:
+                        br
+                        span#label Password:
                         input(type="password", name="password", class="required", minlength="4")
-                     
+                        br 
                         input(type="submit", class="submit", value="login",name="submit")  
                         | or
                         input(type="button", value="register", onclick="register();")
                  div!= access
          #register 
-                 form(action="game",method="post",id="registerfrm")
-                         | Username 
-                         input(type="text",name="name",class="required", minlength="4")
-                         br
-                         | Password: 
-                         input(type="password",id="password", name="password" ,class="required", minlength="4")
-                         br
-                         | Confirm Password: 
-                         input(type="password", id="confirm_password",name="confirm_password",class="required", minlength="4", equalTo="#password")
-                         br
+                 form(action="game",method="post",id="registerfrm") 
+                         span#label Username 
+                         input(type="text",name="name",class="required", minlength="4") 
+                         br 
+                         span#label Password: 
+                         input(type="password",id="password", name="password" ,class="required", minlength="4") 
+                         br        
+                         span#label Confirm Password: 
+                         input(type="password", id="confirm_password",name="confirm_password",class="required", minlength="4", equalTo="#password") 
+                         br 
                          input(type="submit",name="submit",class="submit",value="register");
 
 

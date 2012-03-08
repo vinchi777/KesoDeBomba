@@ -68,6 +68,17 @@ socket.on('cleararena',function(){
  $("#arena").html("");
  alert("player leaved the game");
 });
+function record_winlose(pno){
+	var number;
+	if(pno == "pone")
+		number = 1;
+	else if(pno == "ptwo")
+		number =2;
+	if(myplayerno == number)
+          socket.json.emit('gameover',{name:user_name , result:"win" });
+	else
+	  socket.json.emit('gameover',{name:user_name , result:"lose"});
+}
 function newgame(){
 	startgame = 1;
 	if($('#pone').length>0)

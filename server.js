@@ -1,5 +1,5 @@
 var express = require('express');
-var app =express.createServer();
+var app =express.createServer(); 
 var io =require('socket.io').listen(app); 
 var pg = require('pg'); 
 //for localhost
@@ -18,7 +18,10 @@ app.set('view engine','jade');
 app.set('view options', {
 	  layout: false
 });
+app.listen(port,function(){
+ console.log("listening on port" + port);
 
+});
 app.get('/', function(req,res){ 
   delete req.session.name;
   res.render(__dirname + '/login.jade',{access:"login to play the game"});
@@ -46,10 +49,7 @@ app.get('/game',function(req,res){
  }
 });
 
-app.listen(port,function(){
- console.log("listening on port" + port);
 
-});
 var prevroom;
 var players;
 var rooms = new Array();
@@ -142,4 +142,20 @@ io.sockets.on('connection',function(socket){
                              socket.leave(socket.roomid);
 		 }           
          })
+	  socket.on('gameover',function(data){
+		pg.connect(conString,function(err,client){
+	         if(data.result == "win"){ 
+		  client.query("UPDATE users SET wins=(wins+1) WHERE name=$1",[data.name],function(err,result){
+			 console.log(err); 
+		  });
+		 }
+		 else if(data.result == "lose"){
+		  client.query("UPDATE users SET lose=(lose+1) WHERE name=$1",[data.name],function(err,result){
+			 console.log(err); 
+		  });
+		 }
+		  
+		  console.log("inserted winlose");
+		});	  
+	  });
 });

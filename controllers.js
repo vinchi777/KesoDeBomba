@@ -1,9 +1,9 @@
 function login(pg,conString,form,res,req){
   
 	pg.connect(conString, function(err, client) {
-		client.query("SELECT * from users WHERE name=$1 AND password=$2",[form.name,form.password], function(err, result) {
+	    client.query("SELECT * from users WHERE name=$1 AND password=$2",[form.name,form.password], function(err, result) {
 			if(result.rows.length >0){
-				console.log(result.rows.length);
+				console.log(result.rows.length + result.rows[0].name + result.rows[0].wins);
 				req.session.name = form.name;
 				res.render(__dirname + '/game.jade',{name:form.name});	
 			}

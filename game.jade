@@ -27,6 +27,9 @@ html
                 #welcome
                         | Welcome
                         !=name 
+                 script(type="text/javascript")
+                         var user_name = $("#welcome").html();
+                         user_name = user_name.substring(8); 
                 #status
                 #msgdiv
                         textarea#msg(rows='20', cols='20')

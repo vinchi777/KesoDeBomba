@@ -31,7 +31,7 @@ this.initialize = function(){
 }
 //to move or animate a player to  specific direction 40 for down 38 for up 37 for left 39 for right. if im not mistaken.
 this.move = function(direction){
-	
+
     if(direction == 40)
     {
 		   $("#"+this.playerno).animate({"bottom": "-=50px"}, "fast");
@@ -72,6 +72,7 @@ this.canmove = function(direction){
  	   else if(cell == "saloon" && this.item ==1){
 		alert(this.playerno + "  wins!")
 		cleanSprite();
+		record_winlose(pno); //send player who wins
 		newgame();
 	    }
 	   else
@@ -93,6 +94,7 @@ this.canmove = function(direction){
 	    else if(cell == "saloon" && this.item ==1){
 		alert(this.playerno + "  wins!")
 			cleanSprite();
+			record_winlose(pno); //send player who wins
 			newgame();
 	    }
 	    else
@@ -111,8 +113,9 @@ this.canmove = function(direction){
 		   return 1;
 	   }
 	   else if(cell == "saloon" && this.item ==1){
-		alert(this.playerno + "  wins!")
+		alert(this.playerno + " wins!")
 			cleanSprite();
+			record_winlose(pno); //send player who wins
 			newgame();
 	   }
 	    else 
@@ -133,6 +136,7 @@ this.canmove = function(direction){
 	    else if(cell == "saloon" && this.item ==1){
 		alert(this.playerno + "  wins!")
 			cleanSprite();
+			record_winlose(pno); //send player who wins
 			newgame();
 	    }
 	    else
